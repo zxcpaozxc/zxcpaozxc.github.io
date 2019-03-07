@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2019-03-07T15:39:04.293Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/03/07/hello-world/</loc>
+    
+    <lastmod>2019-03-07T13:08:32.148Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/02/25/%E7%94%A8python%E4%B8%AD%E7%9A%84lxml%E6%A8%A1%E5%9D%97%E7%88%AC%E5%8F%96%E8%B5%B7%E7%82%B9%E7%BD%91%E5%85%8D%E8%B4%B9%E9%98%85%E8%AF%BB%E5%88%97%E8%A1%A8/</loc>
+    
+    <lastmod>2019-03-04T13:15:53.893Z</lastmod>
+    
+  </url>
+  
+</urlset>
