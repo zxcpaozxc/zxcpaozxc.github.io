@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>xpath中常用语法</title>
+      <link href="/2019/02/04/xpath%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+      <url>/2019/02/04/xpath%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h3 id="xpath常用语法"><a href="#xpath常用语法" class="headerlink" title="xpath常用语法"></a>xpath常用语法</h3><ol><li>xpath是一门在XML文档中查找信息的语言，在爬虫中常用来查找信息，因此掌握其语法，可以帮助我们很好的去查找想要获得的信息。</li></ol><h5 id="如何来进行节点的选择"><a href="#如何来进行节点的选择" class="headerlink" title="如何来进行节点的选择"></a>如何来进行节点的选择</h5><ol><li><p>选择一个<strong>适当的节点</strong>，对于找寻信息至关重要。往往一个/或者//的选取会得到不同的信息，而且可能和你想像的相差甚远。接下来，就来说明几个重要的概念。</p></li><li><p>父节点与子节点:</p><ul><li>如下图所示:<br><img src="https://raw.githubusercontent.com/zxcpaozxc/zxcpaozxc.github.io/master/image/2.jpg" alt="xpath">的解释一样。</li></ul></li><li><p>下面来具体的讲讲如何来选取节点:</p><ul><li>xpath使用路径表达式在XML文档中选择节点的，节点是沿着路径或者step来选取的.</li><li><p>| 表达式 | 描述 |<br>| —— | —— |<br>|    /   |  从根节点来选取  |<br>|   //   |  从当前节点进行选取，不考虑其位置 |<br>|  @   |  选取属性 |<br>| .| 选取当前节点 |</p></li><li><p>以一个例子来实际操作一下:<br><img src="https://raw.githubusercontent.com/zxcpaozxc/zxcpaozxc.github.io/master/image/3.jpg" alt="豆瓣电影title"><br>先选取其父节点，然后依次来找出信息所在位置的节点信息，最后获得其内容<br>当然，一般浏览器都可以自动获得xpath，但是还是有必要学习一下，以此为例子，我们能够看出来实际中如何取操作这些节点来得到我们想要得到的消息.</p></li></ul></li></ol><h4 id="最后来推荐一个chrome插件，来帮助大家来学习xpath，叫做xpath-helper"><a href="#最后来推荐一个chrome插件，来帮助大家来学习xpath，叫做xpath-helper" class="headerlink" title="最后来推荐一个chrome插件，来帮助大家来学习xpath，叫做xpath helper"></a>最后来推荐一个chrome插件，来帮助大家来学习xpath，叫做<strong>xpath helper</strong></h4><hr><p><strong><em>前提是你可以科学上网</em></strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+          <category> python爬虫 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> python爬虫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用lxml与requests模块爬取起点中文网的免费阅读列表</title>
       <link href="/2019/02/03/%E7%94%A8python%E4%B8%AD%E7%9A%84lxml%E6%A8%A1%E5%9D%97%E7%88%AC%E5%8F%96%E8%B5%B7%E7%82%B9%E7%BD%91%E5%85%8D%E8%B4%B9%E9%98%85%E8%AF%BB%E5%88%97%E8%A1%A8/"/>
       <url>/2019/02/03/%E7%94%A8python%E4%B8%AD%E7%9A%84lxml%E6%A8%A1%E5%9D%97%E7%88%AC%E5%8F%96%E8%B5%B7%E7%82%B9%E7%BD%91%E5%85%8D%E8%B4%B9%E9%98%85%E8%AF%BB%E5%88%97%E8%A1%A8/</url>
