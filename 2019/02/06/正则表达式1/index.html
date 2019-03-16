@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="一护的Blog">
 <meta property="og:description" content="正则表达式的初步学习第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重拾一下自己的知识。    正则表达式是什么？  正则表达式在菜鸟教程中的概念如下： 正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等   我的个人理解就是来对文本进行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-16T15:24:13.770Z">
+<meta property="og:updated_time" content="2019-03-16T15:40:19.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式学习1">
 <meta name="twitter:description" content="正则表达式的初步学习第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重拾一下自己的知识。    正则表达式是什么？  正则表达式在菜鸟教程中的概念如下： 正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等   我的个人理解就是来对文本进行">
@@ -414,7 +414,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-16 23:24:13" itemprop="dateModified" datetime="2019-03-16T23:24:13+08:00">2019-03-16</time>
+                <time title="修改时间：2019-03-16 23:40:19" itemprop="dateModified" datetime="2019-03-16T23:40:19+08:00">2019-03-16</time>
               
             
           </span>
@@ -499,19 +499,106 @@
 </li>
 <li><p>正则表达式的基础规则：</p>
 <ul>
-<li><p>位置标记： <strong>位置标记锚点</strong>是表识字符串位置的正则表达式。<br>| 正则表达式 | 描述 | 实例|<br>|:——–|:——–|:——–:|<br>|    ^   | 指定了匹配正则表达式的文本必须始于字符串的首部|^zxc可匹配以zxc为首的行|<br>|   $  | 指定了匹配正则表达式的文本必须始于字符串的尾部 | zxc$可匹配以zxc结尾的行|</p>
-</li>
-<li><p>标识符: <strong>标识符是正则表达式的基础部分</strong></p>
-</li>
+<li>位置标记： <strong>位置标记锚点</strong>是表识字符串位置的正则表达式。</li>
 </ul>
-<p>| 正则表达式 |  描述 |实例|<br>|:——–:|:——–:|:——–:|<br>|   .     | 匹配任意一个字符       | asq.可以匹配asq1或者asqe 但是不能匹配asqer 其只能匹配单个的字符|<br>|[ ] |匹配括号中的任意一个字符，中括号内可以为字符组或者字符范围|par[kj]可以匹配park或者parj ,[0-9]可以匹配任意的单个数字|<br>|[ ^ ]| 匹配不在中括号中的任意一个字符| 这个就比较好理解如 9[^12]就不能匹配91 或者 92|</p>
-<ul>
-<li>数量修饰符:  <strong>数量修饰符定义了模式可出现的次数</strong><br>| 正则表达式 | 描述 |实例|<br>|:——–|——–:|:——–:|<br>|    ?    | 只能够匹配之前的项1次或者0次 | courl?可以匹配courl 或者是cour |<br>|+| 匹配之前的一项1次或者多次 |courl+ 可以匹配courl或者 courll 等等|<br>| <em> | 可以匹配之前的一项0次或者多次 | c </em> ourl可以匹配 courl或者ccourl或者是ourl 等等 |<br>|{n}| 匹配之前的项n次 |如[0-9]{2} 能够匹配任意的两位数|<br>|{n,}|之前的项至少要匹配n次|如[0-9]{4}能够匹配任意一个4位数或者更多位的数字|<br>|{n,m}|之前的项匹配的最小次数与最多次数|[0-9]{2,5}匹配两位数到五位数之前的任何数字|</li>
-</ul>
-<hr>
-<p>正则表达式的基本规则大概就是这些，之后会给出如何匹配出你想要得到的数据</p>
 </li>
 </ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">正则表达式</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:center">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的首部</td>
+<td style="text-align:center">^zxc可匹配以zxc为首的行</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的尾部</td>
+<td style="text-align:center">zxc$可匹配以zxc结尾的行</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>标识符: <strong>标识符是正则表达式的基础部分</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">正则表达式</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">匹配任意一个字符</td>
+<td style="text-align:center">asq.可以匹配asq1或者asqe 但是不能匹配asqer 其只能匹配单个的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[ ]</td>
+<td style="text-align:center">匹配括号中的任意一个字符，中括号内可以为字符组或者字符范围</td>
+<td style="text-align:center">par[kj]可以匹配park或者parj ,[0-9]可以匹配任意的单个数字</td>
+</tr>
+<tr>
+<td style="text-align:center">[ ^ ]</td>
+<td style="text-align:center">匹配不在中括号中的任意一个字符</td>
+<td style="text-align:center">这个就比较好理解如 9[^12]就不能匹配91 或者 92</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>数量修饰符:  <strong>数量修饰符定义了模式可出现的次数</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">正则表达式</th>
+<th style="text-align:right">描述</th>
+<th style="text-align:center">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">?</td>
+<td style="text-align:right">只能够匹配之前的项1次或者0次</td>
+<td style="text-align:center">courl?可以匹配courl 或者是cour</td>
+</tr>
+<tr>
+<td style="text-align:left">+</td>
+<td style="text-align:right">匹配之前的一项1次或者多次</td>
+<td style="text-align:center">courl+ 可以匹配courl或者 courll 等等</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:right">可以匹配之前的一项0次或者多次</td>
+<td style="text-align:center">c * ourl可以匹配 courl或者ccourl或者是ourl 等等</td>
+</tr>
+<tr>
+<td style="text-align:left">{n}</td>
+<td style="text-align:right">匹配之前的项n次</td>
+<td style="text-align:center">如[0-9]{2} 能够匹配任意的两位数</td>
+</tr>
+<tr>
+<td style="text-align:left">{n,}</td>
+<td style="text-align:right">之前的项至少要匹配n次</td>
+<td style="text-align:center">如[0-9]{4}能够匹配任意一个4位数或者更多位的数字</td>
+</tr>
+<tr>
+<td style="text-align:left">{n,m}</td>
+<td style="text-align:right">之前的项匹配的最小次数与最多次数</td>
+<td style="text-align:center">[0-9]{2,5}匹配两位数到五位数之前的任何数字</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>正则表达式的基本规则大概就是这些，之后会给出如何匹配出你想要得到的数据</p>
 
       
     </div>
