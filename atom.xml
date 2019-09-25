@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-17T13:05:04.474Z</updated>
+  <updated>2019-09-17T13:05:03.643Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2019/09/17/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%9A%84%E5%AD%A6%E4%B9%A0(1)/"/>
-    <id>http://yoursite.com/2019/09/17/汇编语言的学习(1)/</id>
-    <published>2019-09-17T13:05:04.473Z</published>
-    <updated>2019-09-17T13:05:04.474Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="汇编语言的学习"><a href="#汇编语言的学习" class="headerlink" title="汇编语言的学习"></a>汇编语言的学习</h3><ul><li><p><strong>首先为什么要学习汇编语言</strong></p><ol><li>我想说的是，作为一个学习安全，并且下定决心以二进制为自己学习目标的学生来说，自己必须要好好的学习汇编语言</li><li>使用汇编语言可以更好的，更加清楚的了解到计算机的体系结构，对我们理解计算机如何运作的很有帮助</li></ol></li><li><p>我这次学习汇编语言是以“清华大学出版社”,出版的由“James T.Streib”编写的&lt;&lt;汇编语言基础教程&gt;&gt;的书为主体的学习部分</p></li></ul><p>-</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;汇编语言的学习&quot;&gt;&lt;a href=&quot;#汇编语言的学习&quot; class=&quot;headerlink&quot; title=&quot;汇编语言的学习&quot;&gt;&lt;/a&gt;汇编语言的学习&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;首先为什么要学习汇编语言&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;l
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>160个crackme02</title>
