@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="CE的基础练习 首先，CE就是cheat engine就是作弊引擎，我也是看了吾爱破解的大佬的相关文章之后也觉得记录一下自己的学习过程。附上大佬的帖子链接吾爱破解CE链接 接下来，我们就直接开始做做CE提供的基础题，我这里用的CE是中文版的，大家也可以直接在我爱破解上下载，或者用我在这里给的链接CE中文版,提取码是:0o2z不过下载完解压完之后还不是中文版，大家要自己在setting选项上选择中文">
+<meta name="keywords" content="Hexo,Cheat Engine">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CE的基础练习">
+<meta property="og:url" content="http://yoursite.com/2019/02/06/CE的基础练习/index.html">
+<meta property="og:site_name" content="一护的Blog">
+<meta property="og:description" content="CE的基础练习 首先，CE就是cheat engine就是作弊引擎，我也是看了吾爱破解的大佬的相关文章之后也觉得记录一下自己的学习过程。附上大佬的帖子链接吾爱破解CE链接 接下来，我们就直接开始做做CE提供的基础题，我这里用的CE是中文版的，大家也可以直接在我爱破解上下载，或者用我在这里给的链接CE中文版,提取码是:0o2z不过下载完解压完之后还不是中文版，大家要自己在setting选项上选择中文">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-02-16.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-08-22.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-13-31.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-19-14.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-20-06.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-27-15.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-29-01.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-34-00.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-39-00.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-43-14.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-48-26.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-53-45.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-57-50.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-59-58.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-12-11.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-16-13.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-19-21.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-22-07.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-22-07.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-35-52.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-15-33.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-21-55.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-34-46.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-38-40.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-41-01.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-41-44.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-28-06.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-31-25.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-33-14.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-37-59.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-39-43.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-41-16.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-43-37.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-45-25.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-47-07.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-55-14.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-01-16.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-05-23.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-07-20.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-11-03.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-45-36.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-55-24.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-57-55.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-03-01.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/raw/image/Snipaste_2019-09-25_22-07-20.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-10-55.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-14-54.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-21-52.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-29-37.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-29-18.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-40-35.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-42-55.jpg">
+<meta property="og:updated_time" content="2019-09-25T14:46:52.770Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CE的基础练习">
+<meta name="twitter:description" content="CE的基础练习 首先，CE就是cheat engine就是作弊引擎，我也是看了吾爱破解的大佬的相关文章之后也觉得记录一下自己的学习过程。附上大佬的帖子链接吾爱破解CE链接 接下来，我们就直接开始做做CE提供的基础题，我这里用的CE是中文版的，大家也可以直接在我爱破解上下载，或者用我在这里给的链接CE中文版,提取码是:0o2z不过下载完解压完之后还不是中文版，大家要自己在setting选项上选择中文">
+<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-02-16.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一护的Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/06/CE的基础练习/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CE的基础练习 | 一护的Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/zxcpaozxc" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一护的Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签<span class="badge">5</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">8</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/06/CE的基础练习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="bleach一护">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/kabikabi.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一护的Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CE的基础练习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-06T00:00:00+08:00">2019-02-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-25 22:46:52" itemprop="dateModified" datetime="2019-09-25T22:46:52+08:00">2019-09-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/Cheat-Engine/" itemprop="url" rel="index"><span itemprop="name">Cheat Engine</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/02/06/CE的基础练习/" class="leancloud_visitors" data-flag-title="CE的基础练习">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="CE的基础练习"><a href="#CE的基础练习" class="headerlink" title="CE的基础练习"></a>CE的基础练习</h3><ul>
+<li>首先，CE就是cheat engine就是作弊引擎，我也是看了吾爱破解的大佬的相关文章之后也觉得记录一下自己的学习过程。附上大佬的帖子链接<a href="https://www.52pojie.cn/thread-691615-1-1.html#18713591_ce-%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">吾爱破解CE链接</a></li>
+<li>接下来，我们就直接开始做做CE提供的基础题，我这里用的CE是中文版的，大家也可以直接在我爱破解上下载，或者用我在这里给的链接<a href="https://pan.baidu.com/s/1-tqv2A-dNmQc6XVcAWQCMA" target="_blank" rel="noopener">CE中文版</a>,提取码是:<strong>0o2z</strong><br>不过下载完解压完之后还不是中文版，大家要自己在setting选项上选择中文。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-02-16.jpg" alt="设置语言"></li>
+<li>接下来就要开始CE的基础使用了，CE自己提供了一个内置的小学习程序挺有趣的教学内容，我们就一题一题的往下做。<ol>
+<li>首先第一题，CE的这个小练习，在帮助栏里可以找到。那第一题的要求是这样的<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-08-22.jpg" alt="第一题">,<em>就是要我们把生命值改为1000</em>，而且提示里说用精确数值扫描，所以我们就顺着题目的要求来找到地址，修改值即可。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-13-31.jpg" alt="CE的基本使用"><br>首先我们先要把进程加载到CE中，然后我们用精确数值扫描。我们知道刚刚开始时，生命是100，所以我们首先来搜100，就是用默认的4字节的方式就可以。第一次扫描会有很多的值，所以我们要进行筛选。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-19-14.jpg" alt="第一次搜索的结果">我们点击 <strong>“打我”</strong>，可以看到我们的生命减一点变为了98，于是我们再去搜索98，就这样持续下去可以定位到改变生命的地址.我们双击那个唯一的地址，把他加入到地址列表中，修改值为1000。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-20-06.jpg" alt="修改结果">，这样我们就可以回到那个小测试上，发现已经可以点击下一步了，第一题就结束了。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-27-15.jpg" alt="结果图"></li>
+<li>接着就开始做第二个题目，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-29-01.jpg" alt="第二题">第二个题目就是说是未知大小的值，因为我们看不到我们的生命值，于是我们可以使用CE的未知值来先搜索，我们在扫描类型中选择 <strong>未知的初始值</strong><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-34-00.jpg" alt="扫描类型"> 然后开始扫描,可以看到扫描结果很大，连地址都没有出现，但是我们可以想象到应该通过血量的变化来锁定地址，在小程序中点击打我，可以看到生命值减小了，于是我们在接着搜 <strong>减少的数值</strong>那一项*<em>,<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-39-00.jpg" alt="减少的数值">可以看到地址减少了很多，于是还是继续上述的打我-搜减小的数值,得到如下的结果<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-43-14.jpg" alt="锁定地址">,结合提示信息知道血量在 </em>0-500* 之间于是我们找到地址直接改为5000结束。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-48-26.jpg" alt="结果"></li>
+<li>第三题是关于浮点数，单双精度的问题，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-53-45.jpg" alt="题目">这两个算是很简单的了，直接在搜索中选择确定的值，在 <strong>数值类型</strong> 中选择单浮点和多浮点然后再按照上两题那样的方法，来锁定地址就可以过关了。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-57-50.jpg" alt="修改图"></li>
+<li>第四题的题目，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_20-59-58.jpg" alt="题目">本题就是要我们来修改代码来使当我们点击 <strong>改变数值</strong> 时值不改变，那我们还是要先找到变动数值的地址，方法和上面几题一样。然后我们选中地址右键选择 <strong>找出是什么改变了地址</strong> 这一项或者直接 <strong>Ctrl+F6</strong>,然后我们会看到这样一个小窗口，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-12-11.jpg" alt="窗口">,然后我们回到小程序的界面点击改变数值，可以发现其中已经有汇编代码了，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-16-13.jpg" alt="如图">,这里我们直接把它nop掉，或者注释掉都可以实现我们的目的，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-19-21.jpg" alt="NOP掉">，这样就ok了。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-22-07.jpg" alt="结果"></li>
+<li>第五题，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-22-07.jpg" alt="题目">,这个题目就是去学着去找基址，首先要做的还是锁定数值的地址，方法和上述题目一样。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_21-35-52.jpg" alt="找到地址">，锁定了之后看他题目的描述，就是找到指针，那我们还是Ctrl+f6走起，来看看什么能改变这个地址。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-15-33.jpg" alt="详细信息图">，我们可以看到一个很符合指针特征的汇编代码就是<code>MOV [edx],eax</code>这个是典型的指针变量的特征。前面肯定有取址的指令。如果有没有学过c语言的人可能不知道为什么这符合指针的特征，我们就用一个例子来解释一下。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-21-55.jpg" alt="指针的反汇编">,我们可以在VC6的反汇编窗口看到，编译器处理指针时，首先取地址，把地址值传给寄存器，在把寄存器的值传给指针变量，当然这是debug版的。为什么不把地址直接传给指针变量呢（mov指令的使用规则，两个内存不能用mov指令）。这样我们知道指针的特征后，这个题目就很好解决了我们找到了一个地址这个地址是存放在指针里的，在去找一下那个指针的地址，我们只要在去搜一下这个地址即可<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-34-46.jpg" alt="找到基址">，这样我们手动添加到地址栏<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-38-40.jpg" alt="手动添加地址">，我们这里的偏移为0，也很容易理解毕竟只是 <strong>[edx]</strong> 没有偏移。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-41-01.jpg" alt="点一下激活">然后我们找到基址后修改值为5000后点击改变指针就成功完成了。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-24_23-41-44.jpg" alt="结果图"></li>
+<li>第六题，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-28-06.jpg" alt="题目">，这一题就是要我们通过修改代码来实现点一下 <em>打我</em> 加两滴血的操作，当然第一步还是先找到血量的地址。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-31-25.jpg" alt="地址的值">找到地址后我们就要去看看是哪个地方改变了这个值,<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-33-14.jpg" alt="血量的变化操作">,注意到的操作是<code>sub dword ptr [],01</code>于是我们知道血量的操作是每次减一，我们只要改成 <code>add dword ptr[],02</code>，就可以了我们只要用CE<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-37-59.jpg" alt="自动汇编">，进入自动汇编后选择代码注入<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-39-43.jpg" alt="代码注入">，地址就是在默认的那个点击确定后，出现代码<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-41-16.jpg" alt="代码">，然后按照我的想法修改sub为add后的代码<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-43-37.jpg" alt="修改后的代码">后再去小程序中点击打我会发现开始加血了，于是本题也就成功了。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-45-25.jpg" alt="结果"></li>
+<li>第七题，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-47-07.jpg" alt="题目">，多级指针这可能是初学c语言的同学最头疼的地方，题目中给出的是一个4级指针，我们不妨在c语言里给出一个四级指针来演示一下过程，好让初学者更好的理解多级指针。首先以2级指针为例，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_20-55-14.jpg" alt="二级指针的指向问题">，这就很容易理解2级指针里存放的是一级指针的地址，那么如果是4级指针就是存放3级指针的地址，我们来看一下，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-01-16.jpg" alt="4级指针的结果">从图中可以看出对于4级指针它就是存放的3级指针的地址，层层递进的关系。于是我们在来看题目，还是先找到最初的血量地址，方法雷同，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-05-23.jpg" alt="最初的地址">，找到之后我们还是查看什么改变了这个地址，我们可以看到那个代码符合指针的特征<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-07-20.jpg" alt="第一个地址"><code>[esi+18]</code>注意这里的18是偏移量，于是我们把 <em>01936a80</em> 放入搜索栏中得到了一个新的地址，我们还是顺着上面的思路不过这次不要选什么改变了，选什么访问了地址。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-11-03.jpg" alt="地址2">，然后我们发现怎么地址是一样的呢，<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-45-36.jpg" alt="寻找地址">，我的想法就是因为我们得到的地址是加了偏移的地址(在结果栏显示的地址，但是这里没有偏移也就是说我们定位的地址就是其指针的地址)这里引用一个大佬的话 <em>CE 默认使用硬件断点的方式，断点只能停在指令执行之后，而这条指令正好是把 esi 原来指向的地址中的值再赋值给 esi，所以执行之后 esi 的值已经是被覆盖掉的值了，而我们想知道的恰恰是执行这条指令之前的 esi 值，那么怎么办呢</em>，我们发现有一个地址是指向这个地址的于是我想看看是不是这个地址就是上一个指针的地址于是怀着试试看的想法我搜了一下地址，结果发现点击改变数值，确实发生了变化，于是锁定了地址。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-55-24.jpg" alt="地址">，然后发现这一个的偏移是0x14，于是接着搜地址，这次的地址偏移是0x0c下一次按照提示就应该是基址了<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_21-57-55.jpg" alt="地址">，于是我们再接着搜地址，就是搜地址找到基址为止！，于是我们终于找到了基址！！！ <img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-03-01.jpg" alt="基址地址">,这样一来剩下的就只要手动加地址，修改值就OK了。再按照我们刚刚讲解的四级指针的运作流程填偏移就很简单了<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/raw/image/Snipaste_2019-09-25_22-07-20.jpg" alt="填偏移地址">，然后我们在锁定一下，再去改值就ok了.<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-10-55.jpg" alt="结果"></li>
+<li>第8题 题目<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-14-54.jpg" alt="题目">，这题很好玩就是模拟对打要求就是你要获胜但是不能够锁定生命值，在这道题里生命值为单浮点类型。我的想法就是先找到血量的地址，再通过代码注入来修改生命值获得胜利，我们首先来找我们自己人的生命地址<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-21-52.jpg" alt="生命地址">，我们在地址栏点击我们选中的地址在选择 <strong>浏览相关内存区域</strong>,可以看到在18e00b0处有一个01的标识，可以猜测是否为组队信息，于是我们接着找队友eric与对手HAL的标识来确认我们的新想法。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-29-37.jpg" alt="队友标识"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-29-18.jpg" alt="对手标识">，对比可以看到一个的标识是01，另一个是02这也确定了我们的想法，于是我们就这此处注入代码<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-40-35.jpg" alt="注入的代码">。结果就是不会改变我方的值，只有敌人的血量变化。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Snipaste_2019-09-25_22-42-55.jpg" alt="结果">，我们点击重启游戏并且执行后发现，我们成功了 ！！！！<br>到这里基础的内容CE内容就结束了，CE后面还自带了几个好玩的小游戏的练习后面也会做出来玩玩。</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+    
+    
+    
+    <div>
+  
+    <div> 
+
+<div style="text-align:center;color: #ccc;font-size:14px;">-------------the end<i class="fa fa-paw"></i>thanks for your reading-------------</div>
+
+</div>
+
+  
+    </div>
+
+
+
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+          
+            <a href="/tags/Cheat-Engine/" rel="tag"><i class="fa fa-tag"></i> Cheat Engine</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/06/正则表达式1/" rel="next" title="正则表达式学习1">
+                <i class="fa fa-chevron-left"></i> 正则表达式学习1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/11/160个crackme02/" rel="prev" title="160个crackme02">
+                160个crackme02 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/kabikabi.jpg" alt="bleach一护">
+            
+              <p class="site-author-name" itemprop="name">bleach一护</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zxcpaozxc" title="GitHub &rarr; https://github.com/zxcpaozxc" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:122085909@qq.com" title="E-Mail &rarr; mailto:122085909@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CE的基础练习"><span class="nav-number">1.</span> <span class="nav-text">CE的基础练习</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">bleach一护</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'DWn2Rht4UtRAhkKuKRk6JNjr-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'DWn2Rht4UtRAhkKuKRk6JNjr-gzGzoHsz',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
