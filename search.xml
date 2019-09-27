@@ -4,13 +4,29 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2019/09/27/CE%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%AC%AC%E4%B8%80%E5%85%B3/"/>
-      <url>/2019/09/27/CE%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%AC%AC%E4%B8%80%E5%85%B3/</url>
+      <title>CE小游戏第一关</title>
+      <link href="/2019/08/11/CE%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%AC%AC%E4%B8%80%E5%85%B3/"/>
+      <url>/2019/08/11/CE%E5%B0%8F%E6%B8%B8%E6%88%8F%E7%AC%AC%E4%B8%80%E5%85%B3/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h3 id="CE小游戏第一关"><a href="#CE小游戏第一关" class="headerlink" title="CE小游戏第一关"></a>CE小游戏第一关</h3><ul><li>这次首先来讲一下CE自带的小游戏的第一关，第一关的意思就是每发射5次子弹目标就会重新恢复生命，我们要做的就是把目标击败。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-1.jpg" alt="小游戏的第一关"><h4 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h4></li><li>我们来尝试攻击目标发现其血量在依次降低，到了第五次恢复满，于是就有想法去搜索其生命值，第一次未知就搜未知的值，后面生命值减少时，搜减少的值，当生命值增加时，再去搜增加的值来锁定血量的地址。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-2.jpg" alt="初次搜索"><br>当我们第一次搜减小的值发现有很多值，于是我们还要继续这样来搜索以便减少无用的地址量。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-3.jpg" alt="第四次搜索"></li><li>当我们在搜索到第4次发现一个值只有4，很符合我们的需求，于是我们再测第五次来验证我们的想法。第五次搜索后其值更改回了100，于是我们可以确定这个地址就是我们要找的血量地址。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-4.jpg" alt="第五次搜索"></li><li>我们找到了地址以后肯定想着要去改变它的值，好让我们通关，于是我们来看看是什么地方改变其值的，<strong>ctrl+f6</strong> 走着，找到了改变其值的代码，于是我们肯定想着去更改代码。于是我们在这里进行代码注入。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-5.jpg" alt="能修改血量的代码"></li><li>我们把其值改为0，然后再去打它发现我们就已经成功了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-7.jpg" alt="代码注入修改其值"><br>于是我们就已经采用这种方法完成了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-8.jpg" alt="结果图"></li></ul><h4 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h4><ul><li>我们发现我们的子弹只有五发，于是另一个想法就是我们把子弹的数量改为很多不久也可以改变其值，于是我们就顺着这个思路来做。但是再测试中我也尝试在子弹只有五发的时候来搜索5，但是顺着这个思路走，发现根本无法找到我们想要的结果，于是我就想子弹应该是存在数组中的，通过函数来减小其值，于是就有了一个想法就是数组在入栈的时候，其第一个值如array[0],应该是最靠近栈顶的，<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-9.jpg" alt="简单的数组例子">,这样我们就能更加直观的体会到我们应该怎么样去查了，我们在想想假如存了5发子弹我们可以正向的记录打出的子弹，也可以记录剩下多少子弹，于是我们就猜测数组里存放的是打了几发子弹（这样便于记录）,于是我们在第一次搜索0，第二次搜索1，依次类推。以这种方式我们成功的找到子弹数量的地址，于是我们还是要再次代码注入。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-10.jpg" alt="子弹数量"></li><li>观察代码可以看出其值是每次加1，也就是说和我们猜测的一致，于是我们只要把1改为0就可以了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-11.jpg" alt="原始代码"><br>-当我们把子弹改为 <em>add 00</em> 我们便可以发现子弹的数量就不会变了，于是我们变成功了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-12.jpg" alt="结果图"><h4 id="这样我们第一关就结束了！！！！！！"><a href="#这样我们第一关就结束了！！！！！！" class="headerlink" title="这样我们第一关就结束了！！！！！！"></a>这样我们第一关就结束了！！！！！！</h4></li></ul>]]></content>
       
       
+      <categories>
+          
+          <category> Hexo </category>
+          
+          <category> CE </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> CE </tag>
+            
+        </tags>
       
     </entry>
     
