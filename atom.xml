@@ -43,6 +43,31 @@
   </entry>
   
   <entry>
+    <title>160个crackme40</title>
+    <link href="http://yoursite.com/2019/05/22/160%E4%B8%AAcrackme40/"/>
+    <id>http://yoursite.com/2019/05/22/160个crackme40/</id>
+    <published>2019-05-21T16:00:00.000Z</published>
+    <updated>2019-10-04T02:26:32.672Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="160个crackme40"><a href="#160个crackme40" class="headerlink" title="160个crackme40"></a>160个crackme40</h3><h4 id="首先来看看这个程序"><a href="#首先来看看这个程序" class="headerlink" title="首先来看看这个程序"></a>首先来看看这个程序</h4><ul><li>这个程序的样子很普通和平常见的crackme程序没什么不同，我们随便输入用户名和密码来测试一下，那肯定是不行咯，于是我们便按照程序来解决他。吼吼吼！！！<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-03.jpg" alt="程序的样子"><h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4></li><li>我们首先要去查看这个程序是否加了壳，将其拖入peid，查看发现其是delphi的程序，对于delphi的程序，我们就采用 <strong>“先darkde4查看事件的信息，在使用OD来解决”</strong> 的思路来解决，于是我们就把这个程序拖入darkde4中。 <img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-1.jpg" alt="查壳信息"></li><li>我们在 <em>过程</em> 窗口中找到了多个有用的事件最重要的就是Button1Click这个事件，这个控件应该就是和我们注册能否成功相挂钩的。于是我就想在od中直接找到这个事件来开始我们的算法分析。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-2.jpg" alt="事件信息"></li></ul><h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><ul><li>打开OD，我们直接跳到Buttonclick的地址来分析。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-3.jpg" alt="事件入口"></li><li>我们先大体看一下这些代码，大概在离入口不远的地址就有了对注册信息的判断，看来这个程序的注册过程一定不是很复杂，那么我们就一步步来分析。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-4.jpg" alt="判断图"></li><li><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-5.jpg" alt="分析1"><br>这些代码就是判断用户名和密码是否为空，如果有一个为空就结束并且弹出对话框提示有一项为空。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme-6.jpg" alt="关键的代码"><br>这一段循环就是生成密码的过程，就是 <em>循环取用户名的ascii值并且每次都加5并把值放在[ebp-4]的地址中</em> 并且这个过程完成后就直接到了判断的地方，也就是说密码就是很简单的过程啊啊啊。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-7.jpg" alt="栈里存储的密码"></li></ul><h4 id="注册机的编写"><a href="#注册机的编写" class="headerlink" title="注册机的编写"></a>注册机的编写</h4><ul><li>既然都知道了算法并且如此的简单，于是我便随便写了一个python脚本来解决它。代码如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">while 1:</span><br><span class="line">    str1=input(&quot;请输入你的用户名&quot;)</span><br><span class="line">    str2=[]</span><br><span class="line">    str3=[]</span><br><span class="line">    for i in range(0,len(str1)):</span><br><span class="line">        temp=ord(str1[i])+5</span><br><span class="line">        str2.append(temp)</span><br><span class="line">    for i in str2:</span><br><span class="line">        str3.append(chr(i))</span><br><span class="line">    str4=&apos;&apos;.join(str3)</span><br><span class="line">    print(str4)</span><br></pre></td></tr></table></figure></li></ul><p>最后附上一个我们的结果图:<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-8.jpg" alt="结果"><br>注: <strong>要注意当你的用户名有z的时候加五之后其ascii的值表示为删除，所以这一题中还是尽量不要出现z为好</strong><br> 当你按照这个打的时候很可能出错！！！！！！！但是这不是你注册机编写的错误！！！！！！！<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-9.jpg" alt="当用户名中出现了&quot;z&quot;"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;160个crackme40&quot;&gt;&lt;a href=&quot;#160个crackme40&quot; class=&quot;headerlink&quot; title=&quot;160个crackme40&quot;&gt;&lt;/a&gt;160个crackme40&lt;/h3&gt;&lt;h4 id=&quot;首先来看看这个程序&quot;&gt;&lt;a href=&quot;#
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="破解基础" scheme="http://yoursite.com/tags/%E7%A0%B4%E8%A7%A3%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>160个crackme02</title>
     <link href="http://yoursite.com/2019/04/11/160%E4%B8%AAcrackme02/"/>
     <id>http://yoursite.com/2019/04/11/160个crackme02/</id>
