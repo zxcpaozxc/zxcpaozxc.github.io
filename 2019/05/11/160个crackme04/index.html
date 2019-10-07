@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-5.jpg">
 <meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme04-8.jpg">
 <meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-9.jpg">
-<meta property="og:updated_time" content="2019-10-04T15:56:54.178Z">
+<meta property="og:updated_time" content="2019-10-07T10:00:13.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="160个crackme04">
 <meta name="twitter:description" content="160个crackme04首先来看看程序 当我们打开这个程序时会发现这个注册过程和其他的都不太一样，它少了 确定键，但是本着尝试的态度，我还是随便输入一些来测试一下。我们发现无法点击底下那块灰色的控件，于是只能按步骤先去查壳喽。  查壳 把程序拖入peid查看其信息， 发现其为delphi程序，于是我们接下来就直接只用darkde4这个delphi神器来进一步的查看信息。我们可以看到那个我们无法点">
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-04 23:56:54" itemprop="dateModified" datetime="2019-10-04T23:56:54+08:00">2019-10-04</time>
+                <time title="修改时间：2019-10-07 18:00:13" itemprop="dateModified" datetime="2019-10-07T18:00:13+08:00">2019-10-07</time>
               
             
           </span>
@@ -474,7 +474,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.1k</span>
+                <span title="本文字数">3.2k</span>
               
 
               
@@ -516,7 +516,7 @@
 <li>发现其为delphi程序，于是我们接下来就直接只用darkde4这个delphi神器来进一步的查看信息。我们可以看到那个我们无法点击的控件，是一个panel控件，而且有作者提示说注册成功会出现朱茵小姐的照片。之后我们再看一看事件。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-4.jpg" alt="事件信息"><br>在事件中我们能注意到几个关键的地方，一个是chkcode我认为是检查密码是否相同的，应该是重点。还有两个是 <strong>paneldoubleclick</strong> 另一个是 <strong>panelclick</strong> 这两个一个是 <em>double</em> 另一个就是单个的，推测是点击那个panel控件的次数来判断的.于是我们od来分析。</li>
 </ul>
 <h4 id="算法的分析"><a href="#算法的分析" class="headerlink" title="算法的分析"></a>算法的分析</h4><ul>
-<li>打开od找到chkcode的地址来开始分析，<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-5.jpg" alt="入口"><br>在进入函数前看到一串字符很有意思，但是也不知道有什么用总觉得和密码应该有关，先不管了，开始分析函数。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme04-8.jpg" alt="具体的分析"><br>在这次的分析中，首先是要把用户名长度加上5，然后的会有一个 <figure class="highlight plain"><figcaption><span>dword ptr[ebx+314] ``` 起先没注意但是后来发现就是刚才那个有趣的字符串，之后的一个 *lea* 指令很可疑，因为它把一个带中文的字符串地址给了 *eax* 于是我们跟进这个函数，发现这个函数就是把那些字符串拼接在一起。我们可以在下图中看到拼接完后的字符串的结果。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">![函数里面的处理](https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-7.jpg)</span><br><span class="line">- 既然是chkcode那一定是来检验的后面的代码可以分析完，就是来检验和之前获得那个拼接字符串是否相同。于是我们可以大胆猜测，密码就是这个拼接字符串。</span><br><span class="line">- 拼接字符串的生成构成大概就是：</span><br><span class="line">1. 先是一个带中文的字符串 *黑头Sun Bird*</span><br><span class="line">2. 把用户名长度加上5</span><br><span class="line">3. 在放入字符串 *dseloffc-012-OK*</span><br><span class="line">4. 在加上用户名</span><br><span class="line">- 既然这样直接写一个注册机来试试,很简单</span><br></pre></td></tr></table></figure></li>
+<li>打开od找到chkcode的地址来开始分析，<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-5.jpg" alt="入口"><br>在进入函数前看到一串字符很有意思，但是也不知道有什么用总觉得和密码应该有关，先不管了，开始分析函数。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme04-8.jpg" alt="具体的分析"><br>在这次的分析中，首先是要把用户名长度加上5，然后的会有一个 <figure class="highlight plain"><figcaption><span>dword ptr[ebx+314] ``` 起先没注意但是后来发现就是刚才那个有趣的字符串，之后的一个 *lea* 指令很可疑，因为它把一个带中文的字符串地址给了 *eax* 于是我们跟进这个函数，发现这个函数就是把那些字符串拼接在一起。我们可以在下图中看到拼接完后的字符串的结果。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">![函数里面的处理](https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme4-7.jpg)</span><br><span class="line">- 既然是chkcode那一定是来检验的后面的代码可以分析完，就是来检验和之前获得那个拼接字符串是否相同。于是我们可以大胆猜测，密码就是这个拼接字符串。</span><br><span class="line">- 拼接字符串的生成构成大概就是：</span><br><span class="line"></span><br><span class="line">1. 先是一个带中文的字符串 *黑头Sun Bird*</span><br><span class="line">2. 把用户名长度加上5</span><br><span class="line">3. 在放入字符串 *dseloffc-012-OK*</span><br><span class="line">4. 在加上用户名</span><br><span class="line">- 既然这样直接写一个注册机来试试,很简单</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>while(True):<br>    str1=input(“输入你的用户名:”)<br>    lens=len(str1)+5<br>    passw=”黑头Sun Bird”+str(lens)+”dseloffc-012-OK”+str1<br>    print(passw)<br> <code>`</code></p>
 <ul>
