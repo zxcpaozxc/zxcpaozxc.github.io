@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-09-27T04:11:03.582Z</updated>
+  <updated>2019-10-08T11:36:35.279Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>160个crackme44</title>
+    <link href="http://yoursite.com/2019/10/02/160%E4%B8%AAcrackme44/"/>
+    <id>http://yoursite.com/2019/10/02/160个crackme44/</id>
+    <published>2019-10-01T16:00:00.000Z</published>
+    <updated>2019-10-08T11:36:35.279Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="160个crackme44"><a href="#160个crackme44" class="headerlink" title="160个crackme44"></a>160个crackme44</h3><h4 id="还是先打开程序观察观察"><a href="#还是先打开程序观察观察" class="headerlink" title="还是先打开程序观察观察"></a>还是先打开程序观察观察</h4><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-0.jpg" alt="程序"></p><ul><li>这个程序打开一看就知道不是英文，所以也不用在乎那么多直接百度翻译查什么意思，随便输入用户名和密码后，出现一堆不认识的字符百度翻译说的是 <strong>错误不要再尝试了</strong>，哎呦这真的是瞧不起我喽。那么我们直接去搞定它！</li></ul><h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4><ul><li>直接拖入peid中查看信息.<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-1.jpg" alt="查看信息"><br>看到是delphi的程序就想着直接dark神器走起，结果是dark无法对其进行解析。。。。。。。无奈只能自己去找。<br>那就先用ida添加个delphi的标签方便我们看函数,导出map文件后就直接OD来分析。</li></ul><h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><ul><li>打开OD这次我们就直接搜索unicode，我们可以看到那个错误提示信息的地址，于是推测上一个不认识的字符串就应该是成功的地址，于是我们直接定位到那个地址。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-2.jpg" alt="查unicode码"></li><li>我们往上找可以找到这个事件的入口，我们入口处设置断点然后去分析整个算法的逻辑。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-3.jpg" alt="分析"><br>这里刚开始就先获取用户名的信息，然后把大写字母的输入转成小写字母，然后获得密码。再获取完密码后有一个判断：如果用户名长度小于6，就会跳出一段不认识的字符串来告诉你小于6.之后一段就是一个switch语句的分析了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-4.jpg" alt="switch语句分析"></li><li>我们看到movzx之后就知道这个应该是循环取用户名的位数然后再把它-97后和19进行比较如果大于19就跳转。然后我们可以看到其只是对61-7A进行筛选，也就是小写字母从 <em>a-z</em> 来选。这里还有一点要注意 <strong>[ecx+edx-1]</strong>，这个地址的第一次指向不是我们认为的用户名的第一位，而是其前一个地址，恒等于0的一个byte位，之后就是大段的case分支了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-5.jpg" alt="case分支1"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-6.jpg" alt="case分支2"></li><li>这里我们可以看到其实就是作者给每一个字母都换了值，除了这些字母外其它的都是直接赋给了0x5D这个值。并且把它们的值都累加起来放在bl中，这里也要特别注意一下: <em>bl只是一个8位的寄存器只能放2个十六进制数所以不要弄错了</em>，再之后就是一个循环了我们可以看到会循环6次但是只能取到用户名的5位，这里也表明输入太长的用户名也没什么影响。我们再接着往下分析。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-7.jpg" alt="关键的地方"></li><li>这里我们看到用eax乘以0x4a7e，而eax中存放的正是用户名的长度，也就是用户名长度乘以0x4a7e，之后就是 <strong>mov al,bl</strong> 后的代码也就是把我们计算后的结果也转为10进制，之后把这两个值用 <em>“-”</em><br>连接起来，我们可以看一下栈里的内容.<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-8.jpg" alt="栈内的内容"><br>这里我们就能清楚的看到了密码到底是怎样的了，于是我们就写注册机来还原一下密码生成的过程。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">list1=[0x18,0x25,0x42,0x0c,0x0d,0x6,0x36,0x2b,0x17,0x2f,0x13,0x82,0x9b,0x92,0x3,0x63,0x21,0x42,0x5c,0x29,0xc7,0x66,0x58,0x0a,0x28,0x50]</span><br><span class="line">str1=input(&quot;请输入你的用户名&quot;)</span><br><span class="line">len1=int(len(str1)*0x4a7e)</span><br><span class="line">str2=list(str1)</span><br><span class="line">for i in range(0,len(str1)):</span><br><span class="line">    if ord(str2[i])&gt;=65 and ord(str2[i])&lt;=90: #大写转小写</span><br><span class="line">        str2[i]=chr(ord(str2[i])+32)</span><br><span class="line">for i in range(0,len(str1)):</span><br><span class="line">    if ord(str2[i])&gt;=97 and ord(str2[i])&lt;=122:</span><br><span class="line">        str2[i]=ord(str2[i])-97</span><br><span class="line">    else:</span><br><span class="line">        str2[i]=0x5d</span><br><span class="line">temp =0x5d  </span><br><span class="line">for i in range(0,5):</span><br><span class="line">    if str2[i]==0x5d:</span><br><span class="line">        temp+=str2[i]</span><br><span class="line">    else:</span><br><span class="line">        temp+=list1[str2[i]]</span><br><span class="line">temp1=str(hex(temp))#得到总的值后转为16进制</span><br><span class="line">list2=list(temp1)</span><br><span class="line"># 这里我们只要byte位所以只要最后两个字符就好了</span><br><span class="line">list3=[list2[-1],list2[-2]]</span><br><span class="line">list3.reverse()</span><br><span class="line">temp2=0</span><br><span class="line">for i in range(0,len(list3)):</span><br><span class="line">    if ord(list3[i])&gt;=97 and ord(list3[i])&lt;=102:</span><br><span class="line">        list3[i]=ord(list3[i])-87</span><br><span class="line">    temp2+=int(list3[i])*pow(16,len(list3)-i-1)</span><br><span class="line">#因为不知道怎么用python直接把字符串转为16进制绕了这一大圈才完成这个转换</span><br><span class="line">print(str(temp2)+&apos;-&apos;+str(len1))</span><br></pre></td></tr></table></figure></li></ul><p>算法流程：</p><ol><li>用户名长度乘以0x4a7e</li><li>计算用户名的前5位的值的和（字母查表，其余都为0x5d），并且要加上一个0x5d的值</li><li>用“——”连接起来</li></ol><ul><li>我在写这个的时候没有判断长度的问题，自己知道长度就好了啊啊啊。但是还是要说一说 <strong>这个byte位真的很坑啊，我绕了半天才绕完</strong>，欢迎大家给出好的写法。<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4></li><li>这样下来我们就完成了，测试一下是否正确。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-jieguo.jpg" alt="结果图"><br>我测试了很多都是成功的，这样我们这一题就大功告成了！！！！！！</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;160个crackme44&quot;&gt;&lt;a href=&quot;#160个crackme44&quot; class=&quot;headerlink&quot; title=&quot;160个crackme44&quot;&gt;&lt;/a&gt;160个crackme44&lt;/h3&gt;&lt;h4 id=&quot;还是先打开程序观察观察&quot;&gt;&lt;a href=
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="破解基础" scheme="http://yoursite.com/tags/%E7%A0%B4%E8%A7%A3%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>CE小游戏第一关</title>
