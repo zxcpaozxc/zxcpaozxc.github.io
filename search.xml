@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>160个crackme-shadow</title>
+      <link href="/2019/10/09/160%E4%B8%AAcrackme-shadow/"/>
+      <url>/2019/10/09/160%E4%B8%AAcrackme-shadow/</url>
+      
+        <content type="html"><![CDATA[<h3 id="160个crackme-shadow"><a href="#160个crackme-shadow" class="headerlink" title="160个crackme-shadow"></a>160个crackme-shadow</h3><p><strong>DF-17真的帅啊，看到的瞬间我都想去造导弹了。。。。。可惜啊！！！！！！！！</strong></p><hr><ul><li>言归正传还是回到我们的crackme，这个叫shadow的我也不知道是几了，所以就直接叫名字了。<h4 id="程序初探"><a href="#程序初探" class="headerlink" title="程序初探"></a>程序初探</h4><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-1.jpg" alt="程序"></li><li>我们可以看到这是个控制台程序，再输入账号密码后就直接exit了。所以我们再用peid来查查看，虽然觉得没必要但还是要的。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-2.jpg" alt="peid信息"><br>这里我们可以看出其并没有任何的加壳信息，就是win32 console。于是我们就直接OD来分析。</li></ul><h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-3.jpg" alt="程序入口"></p><ul><li>1 打开OD以后我们就能看到很多的api函数的调用，不过作者倒是给了一点提示信息:<strong>说这是一个纯汇编程序，然后还扯了一大堆没用的东西，这里我们也不要管了。</strong><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-4.jpg" alt="分析1"></li><li>2 我们用OD打开后，直接F8来让程序执行，然后我们可以看到其首先是获得用户名的长度，然后再比较用户名长度是否为空，或者是用户名长度是否超过了8，如果遇到这两种情况都直接退出。<em>程序中是把长度加2后进行比较的</em><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-5.jpg" alt="分析2"></li><li>3 之后在判断完用户名长度后，紧接着就对用户名的内容进行了判断，如果遇到 <strong>shadow，lamer，guest</strong> 中的任何一个都直接退出。</li><li>4 在之后就是获得密码长度，并且比较是否密码为空如果密码为空就直接退出。之后就是获得密码长度，以及比较不过都不是关键。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-6.jpg" alt="分析3"></li><li>5 之后就到了5个call了，但是这些函数中真正有用的其实只有一个。我们还可以观察到这五个中有两个是相同的函数可以只分析一个，所以接下来就是跟进函数内分析。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-7.jpg" alt="分析4"></li><li>6 第一个函数我们可以看到就是循环比较密码的每一位和他提供的那几个值来比较如果最后zf寄存器的值为1，那么地址[40226c]里的值标为5。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-8.jpg" alt="第一个call内容"></li><li>7 第二个函数里我们可以看到还是先循环比较密码的每一位和0的值是否相同如果有0直接就跳出call，之后就是循环比较密码的每一位和 <em>‘S’</em> 的值是否一样如果一样就让地址[40226d]里的值加一。看到这里觉得也和题目的密码生成没什么关系。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-9.jpg" alt="第二个call内容"></li><li>8 第三个函数一看就是没用的因为，其只是去比较和跳转（而且直接跳出去）根本没有对内存有任何修改，所以这个call可以直接忽略。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-10.jpg" alt="第三个call内容"></li><li>9 之后的就是重复的函数调用了，我们接着往下走。过了这几个call后就直接跳到了一个比较的地方，而且比较的正好是我们第2个call所修改的内存地址的值.可以看到他是比较那个值和4是否相等，如果相等就跳。如果不等于4就比较是否大于4，如果大于四也要跳转。这就是有两个地方要我们去判断一下那个是正确的了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-11.jpg" alt="分析5"></li><li>10 我们可以看一下那个等于4时要跳到的地址发现是try harder，那就证明是不对的，于是再去看看另一个地址<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-12.jpg" alt="等于4时的内容"><br>我们在看看另一个地址发现他并没有提示信息，于是看一下它push的内存中信息，发现了 <strong>root access……</strong> 这样几句那也就是说只要密码中多于4个”S”，就能够成功了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-13.jpg" alt="大于4的内容"></li></ul><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul><li>这题我当时也绕了几次才解决的，但是总的来说是不难的当我们看懂的时候还是很简单的，最后附上结果图<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shadow-jieguo.jpg" alt="结果图"></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 破解基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>160个crackme44</title>
       <link href="/2019/10/02/160%E4%B8%AAcrackme44/"/>
       <url>/2019/10/02/160%E4%B8%AAcrackme44/</url>
