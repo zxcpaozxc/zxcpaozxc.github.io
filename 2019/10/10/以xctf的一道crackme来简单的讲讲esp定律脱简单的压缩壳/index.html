@@ -98,29 +98,33 @@
 
 
 
-  <meta name="description" content="160个crackme40首先来看看这个程序 这个程序的样子很普通和平常见的crackme程序没什么不同，我们随便输入用户名和密码来测试一下，那肯定是不行咯，于是我们便按照程序来解决他。吼吼吼！！！查壳 我们首先要去查看这个程序是否加了壳，将其拖入peid，查看发现其是delphi的程序，对于delphi的程序，我们就采用 “先darkde4查看事件的信息，在使用OD来解决” 的思路来解决，于是我">
-<meta name="keywords" content="Hexo,破解基础">
+  <meta name="description" content="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳首先还是查看程序的壳 当我们用PEID来查看时，就会很明显的看到其是一个Nspack壳，这个壳大家都叫它北斗壳难度不大也是一个压缩壳可以用ESP定律来脱壳。  用ESP定律来脱一些简单的压缩壳 我在这里，就借着这道ctf题来介绍一下ESP定律。以及怎么用ESP定律来脱简单的压缩壳。这里我推荐一下52破解基础教程里ximo脱壳教程里面">
+<meta name="keywords" content="Hexo,破解基础,脱壳">
 <meta property="og:type" content="article">
-<meta property="og:title" content="160个crackme40">
-<meta property="og:url" content="http://yoursite.com/2019/05/22/160个crackme40/index.html">
+<meta property="og:title" content="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/index.html">
 <meta property="og:site_name" content="一护的Blog">
-<meta property="og:description" content="160个crackme40首先来看看这个程序 这个程序的样子很普通和平常见的crackme程序没什么不同，我们随便输入用户名和密码来测试一下，那肯定是不行咯，于是我们便按照程序来解决他。吼吼吼！！！查壳 我们首先要去查看这个程序是否加了壳，将其拖入peid，查看发现其是delphi的程序，对于delphi的程序，我们就采用 “先darkde4查看事件的信息，在使用OD来解决” 的思路来解决，于是我">
+<meta property="og:description" content="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳首先还是查看程序的壳 当我们用PEID来查看时，就会很明显的看到其是一个Nspack壳，这个壳大家都叫它北斗壳难度不大也是一个压缩壳可以用ESP定律来脱壳。  用ESP定律来脱一些简单的压缩壳 我在这里，就借着这道ctf题来介绍一下ESP定律。以及怎么用ESP定律来脱简单的压缩壳。这里我推荐一下52破解基础教程里ximo脱壳教程里面">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-03.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-1.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-2.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-3.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-4.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-5.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme-6.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-7.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-8.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-9.jpg">
-<meta property="og:updated_time" content="2019-10-04T02:26:32.672Z">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-1.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-2.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-3.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-5.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-6.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-7.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-8.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/UPXke.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/raw/image/UPX%E4%B8%8B%E7%A1%AC%E4%BB%B6%E6%96%AD%E7%82%B9.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/upx-oep.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-9.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-10.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-11.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-jieguo.jpg">
+<meta property="og:updated_time" content="2019-10-23T11:08:10.420Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="160个crackme40">
-<meta name="twitter:description" content="160个crackme40首先来看看这个程序 这个程序的样子很普通和平常见的crackme程序没什么不同，我们随便输入用户名和密码来测试一下，那肯定是不行咯，于是我们便按照程序来解决他。吼吼吼！！！查壳 我们首先要去查看这个程序是否加了壳，将其拖入peid，查看发现其是delphi的程序，对于delphi的程序，我们就采用 “先darkde4查看事件的信息，在使用OD来解决” 的思路来解决，于是我">
-<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-03.jpg">
+<meta name="twitter:title" content="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳">
+<meta name="twitter:description" content="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳首先还是查看程序的壳 当我们用PEID来查看时，就会很明显的看到其是一个Nspack壳，这个壳大家都叫它北斗壳难度不大也是一个压缩壳可以用ESP定律来脱壳。  用ESP定律来脱一些简单的压缩壳 我在这里，就借着这道ctf题来介绍一下ESP定律。以及怎么用ESP定律来脱简单的压缩壳。这里我推荐一下52破解基础教程里ximo脱壳教程里面">
+<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-1.jpg">
 
 
 
@@ -129,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/22/160个crackme40/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/">
 
 
 
@@ -139,7 +143,7 @@
   };
 </script>
 
-  <title>160个crackme40 | 一护的Blog</title>
+  <title>以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳 | 一护的Blog</title>
   
 
 
@@ -365,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/22/160个crackme40/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bleach一护">
@@ -382,7 +386,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">160个crackme40
+          <h1 class="post-title" itemprop="name headline">以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳
 
               
             
@@ -408,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2019-05-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-05-22T00:00:00+08:00">2019-05-22</time>
+              <time title="创建时间：2019-10-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T00:00:00+08:00">2019-10-10</time>
             
 
             
@@ -425,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-04 10:26:32" itemprop="dateModified" datetime="2019-10-04T10:26:32+08:00">2019-10-04</time>
+                <time title="修改时间：2019-10-23 19:08:10" itemprop="dateModified" datetime="2019-10-23T19:08:10+08:00">2019-10-23</time>
               
             
           </span>
@@ -443,8 +447,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/05/22/160个crackme40/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/22/160个crackme40/" itemprop="commentCount"></span>
+                <a href="/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -452,7 +456,7 @@
 
           
           
-            <span id="/2019/05/22/160个crackme40/" class="leancloud_visitors" data-flag-title="160个crackme40">
+            <span id="/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/" class="leancloud_visitors" data-flag-title="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -477,7 +481,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.4k</span>
+                <span title="本文字数">4.4k</span>
               
 
               
@@ -491,7 +495,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">3 分钟</span>
+                <span title="阅读时长">4 分钟</span>
               
             </div>
           
@@ -511,21 +515,25 @@
       
 
       
-        <h3 id="160个crackme40"><a href="#160个crackme40" class="headerlink" title="160个crackme40"></a>160个crackme40</h3><h4 id="首先来看看这个程序"><a href="#首先来看看这个程序" class="headerlink" title="首先来看看这个程序"></a>首先来看看这个程序</h4><ul>
-<li>这个程序的样子很普通和平常见的crackme程序没什么不同，我们随便输入用户名和密码来测试一下，那肯定是不行咯，于是我们便按照程序来解决他。吼吼吼！！！<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-03.jpg" alt="程序的样子"><h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4></li>
-<li>我们首先要去查看这个程序是否加了壳，将其拖入peid，查看发现其是delphi的程序，对于delphi的程序，我们就采用 <strong>“先darkde4查看事件的信息，在使用OD来解决”</strong> 的思路来解决，于是我们就把这个程序拖入darkde4中。 <img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-1.jpg" alt="查壳信息"></li>
-<li>我们在 <em>过程</em> 窗口中找到了多个有用的事件最重要的就是Button1Click这个事件，这个控件应该就是和我们注册能否成功相挂钩的。于是我就想在od中直接找到这个事件来开始我们的算法分析。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-2.jpg" alt="事件信息"></li>
+        <h3 id="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳"><a href="#以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳" class="headerlink" title="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳"></a>以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳</h3><h4 id="首先还是查看程序的壳"><a href="#首先还是查看程序的壳" class="headerlink" title="首先还是查看程序的壳"></a>首先还是查看程序的壳</h4><ul>
+<li>当我们用PEID来查看时，就会很明显的看到其是一个Nspack壳，这个壳大家都叫它北斗壳难度不大也是一个压缩壳可以用ESP定律来脱壳。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-1.jpg" alt="查壳的信息"></li>
 </ul>
-<h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
-<li>打开OD，我们直接跳到Buttonclick的地址来分析。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-3.jpg" alt="事件入口"></li>
-<li>我们先大体看一下这些代码，大概在离入口不远的地址就有了对注册信息的判断，看来这个程序的注册过程一定不是很复杂，那么我们就一步步来分析。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-4.jpg" alt="判断图"></li>
-<li><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-5.jpg" alt="分析1"><br>这些代码就是判断用户名和密码是否为空，如果有一个为空就结束并且弹出对话框提示有一项为空。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme-6.jpg" alt="关键的代码"><br>这一段循环就是生成密码的过程，就是 <em>循环取用户名的ascii值并且每次都加5并把值放在[ebp-4]的地址中</em> 并且这个过程完成后就直接到了判断的地方，也就是说密码就是很简单的过程啊啊啊。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-7.jpg" alt="栈里存储的密码"></li>
+<h4 id="用ESP定律来脱一些简单的压缩壳"><a href="#用ESP定律来脱一些简单的压缩壳" class="headerlink" title="用ESP定律来脱一些简单的压缩壳"></a>用ESP定律来脱一些简单的压缩壳</h4><ul>
+<li>我在这里，就借着这道ctf题来介绍一下ESP定律。以及怎么用ESP定律来脱简单的压缩壳。<strong>这里我推荐一下52破解基础教程里ximo脱壳教程里面的基础壳教的都挺好的</strong>。<h5 id="什么是ESP定律"><a href="#什么是ESP定律" class="headerlink" title="什么是ESP定律"></a>什么是ESP定律</h5></li>
+<li>简单的来说ESP定律就是利用堆栈平衡来进行脱壳，加壳的程序也是必须保证外壳初始化的现场环境（）要与原程序的现场环境是一致的（主要就是 <em>esp</em> 等重要的寄存器），也就是会<strong>保护现场与恢复现场</strong> 所以常见使用<strong>pushad，popad</strong>这样两个指令，也就是我们如果用OD打开程序见到的是这样的指令就要想到要恢复堆栈。</li>
+<li>如何来利用ESP定律来脱壳呢，就是我们OD载入程序后，先f8运行，找到使寄存器窗口中esp突变红时的esp寄存器的值下硬件断点，在f8执行，这样就会跳到一个离调用popad指令不远的地址，这条地址后应该会有重要的跳转指令（一般就只向程序的OEP）。以一个nspack壳为例子来看一下。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-2.jpg" alt="nspack2.3的入口"></li>
+<li>看到这样的入口特征，就先f8执行一下，找到esp寄存器里的值，在数据窗口跟随。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-3.jpg" alt="要下断点的地方"></li>
+<li>然后我们下硬件断点，然后在让程序执行。硬件断点下法就是找到要下断点的地址然后右键找到断点，断点中有右键断点选硬件访问word就行了，然后直接运行程序。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-5.jpg" alt="完成后"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-6.jpg" alt="找到OEP">。<br>不过我这里OD把代码当成了数据所以出现了很多的字符。完成后就只要dump一下就完成了脱壳.OD里有自己的dump工具我们直接使用就可以了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-7.jpg" alt="dump保存">,这样我们再去查壳就不会出现nspack的标志了，但是有的时候加壳会改我们的IAT表我们有时要自己把IAT修复。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-8.jpg" alt="脱壳完成后"></li>
+<li>接下来我再来用esp定律脱一个最常见的压缩壳UPX壳。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/UPXke.jpg" alt="UPX壳的入口"><br>我们还是先找到esp突变的值然后下硬件断点.<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/raw/image/UPX%E4%B8%8B%E7%A1%AC%E4%BB%B6%E6%96%AD%E7%82%B9.jpg" alt="下断点"><br>之后我们就直接找到oep在dump就好了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/upx-oep.jpg" alt="找到oep">，可以看到这是一个典型的delphi的程序。</li>
 </ul>
-<h4 id="注册机的编写"><a href="#注册机的编写" class="headerlink" title="注册机的编写"></a>注册机的编写</h4><ul>
-<li>既然都知道了算法并且如此的简单，于是我便随便写了一个python脚本来解决它。代码如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">while 1:</span><br><span class="line">    str1=input(&quot;请输入你的用户名&quot;)</span><br><span class="line">    str2=[]</span><br><span class="line">    str3=[]</span><br><span class="line">    for i in range(0,len(str1)):</span><br><span class="line">        temp=ord(str1[i])+5</span><br><span class="line">        str2.append(temp)</span><br><span class="line">    for i in str2:</span><br><span class="line">        str3.append(chr(i))</span><br><span class="line">    str4=&apos;&apos;.join(str3)</span><br><span class="line">    print(str4)</span><br></pre></td></tr></table></figure>
+<h4 id="ctf题解"><a href="#ctf题解" class="headerlink" title="ctf题解"></a>ctf题解</h4><ul>
+<li>按照上述步骤脱完壳后，这里在打开文件发现无法运行，这里就要我们去修复IAT，使用工具ImportREC_fix_HH.exe来把IAT表修复就可以了，具体的步骤见图。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-9.jpg" alt="修复IAT"></li>
+<li><p>之后就直接IDA分析 main函数.<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-10.jpg" alt="函数主体"><br>-我们可以看到主要的判断点就是while循环中的部分，buff数组异或另一个数组，在和dword_402150[v4]一个数组的值来进行比较，我们可以看看另外两个数组的值。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-11.jpg" alt="数组值">。<br>因为是异或运算，所以我们只要让buff外的数组异或一下就可以获得buff数组的值，按照程序的代码我们写一下脚本来完成这个题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">v1 = [0x12, 4, 8, 0x14, 0x24, 0x5c, 0x4a, 0x3d, 0x56, 0xa, 0x10, 0x67, 0,</span><br><span class="line">		0x41, 0, 1, 0x46, 0x5a, 0x44, 0x42, 0x6e, 0x0c,</span><br><span class="line">		0x44, 0x72, 0x0c, 0x0d, 0x40, 0x3e, 0x4b, 0x5f, 2, 1, 0x4c, 0x5e, </span><br><span class="line">		0x5b, 0x17, 0x6e, 0xc, 0x16, 0x68, 0x5b, 0x12]</span><br><span class="line">v2=&quot;this_is_not_flag&quot;</span><br><span class="line">result=&quot;&quot;</span><br><span class="line">for i in range(0,len(v1)):</span><br><span class="line">    result+=chr(ord(v2[i%len(v2)])^v1[i])</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这里的len就是16，当时第一次写的时候没把‘t’加上直接溢出了，所以用的len（）尴尬！！！<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/xctf-jieguo.jpg" alt="附上结果"></p>
 </li>
 </ul>
-<p>最后附上一个我们的结果图:<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-8.jpg" alt="结果"><br>注: <strong>要注意当你的用户名有z的时候加五之后其ascii的值表示为删除，所以这一题中还是尽量不要出现z为好</strong><br> 当你按照这个打的时候很可能出错！！！！！！！但是这不是你注册机编写的错误！！！！！！！<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme40-9.jpg" alt="当用户名中出现了&quot;z&quot;"></p>
 
       
     </div>
@@ -569,6 +577,8 @@
           
             <a href="/tags/破解基础/" rel="tag"><i class="fa fa-tag"></i> 破解基础</a>
           
+            <a href="/tags/脱壳/" rel="tag"><i class="fa fa-tag"></i> 脱壳</a>
+          
         </div>
       
 
@@ -580,8 +590,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/11/160个crackme04/" rel="next" title="160个crackme04">
-                <i class="fa fa-chevron-left"></i> 160个crackme04
+              <a href="/2019/10/09/160个crackme-shadow/" rel="next" title="160个crackme-shadow">
+                <i class="fa fa-chevron-left"></i> 160个crackme-shadow
               </a>
             
           </div>
@@ -589,10 +599,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/11/CE小游戏第一关/" rel="prev" title="CE小游戏第一关">
-                CE小游戏第一关 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -778,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#160个crackme40"><span class="nav-number">1.</span> <span class="nav-text">160个crackme40</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先来看看这个程序"><span class="nav-number">1.1.</span> <span class="nav-text">首先来看看这个程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查壳"><span class="nav-number">1.2.</span> <span class="nav-text">查壳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法分析"><span class="nav-number">1.3.</span> <span class="nav-text">算法分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册机的编写"><span class="nav-number">1.4.</span> <span class="nav-text">注册机的编写</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳"><span class="nav-number">1.</span> <span class="nav-text">以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先还是查看程序的壳"><span class="nav-number">1.1.</span> <span class="nav-text">首先还是查看程序的壳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用ESP定律来脱一些简单的压缩壳"><span class="nav-number">1.2.</span> <span class="nav-text">用ESP定律来脱一些简单的压缩壳</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是ESP定律"><span class="nav-number">1.2.1.</span> <span class="nav-text">什么是ESP定律</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ctf题解"><span class="nav-number">1.3.</span> <span class="nav-text">ctf题解</span></a></li></ol></li></ol></div>
             
 
           </div>
