@@ -98,30 +98,31 @@
 
 
 
-  <meta name="description" content="CE小游戏第一关 这次首先来讲一下CE自带的小游戏的第一关，第一关的意思就是每发射5次子弹目标就会重新恢复生命，我们要做的就是把目标击败。思路一 我们来尝试攻击目标发现其血量在依次降低，到了第五次恢复满，于是就有想法去搜索其生命值，第一次未知就搜未知的值，后面生命值减少时，搜减少的值，当生命值增加时，再去搜增加的值来锁定血量的地址。当我们第一次搜减小的值发现有很多值，于是我们还要继续这样来搜索以便">
+  <meta name="description" content="crackme_test1查壳 这个Crackme是一个外国OD教程教程中的一个很经典的Crackme,今天我也做了一下，来看看到底是什么样子的。首先还是先去查一下壳。PEID显示其是MASM32写的。那我们就先用IDA来看一下。  IDA分析 还是先输入一个测试数据来先试试，输入用户名为 qweqwe, 密码随便输入一个比如 1111111 ,发现弹出了错误提示的字符串，然后我们就直接IDA来看">
 <meta name="keywords" content="Hexo,破解基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CE小游戏第一关">
-<meta property="og:url" content="http://yoursite.com/2019/08/11/CE小游戏第一关/index.html">
+<meta property="og:title" content="crackme_test1">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/crackme_test1/index.html">
 <meta property="og:site_name" content="一护的Blog">
-<meta property="og:description" content="CE小游戏第一关 这次首先来讲一下CE自带的小游戏的第一关，第一关的意思就是每发射5次子弹目标就会重新恢复生命，我们要做的就是把目标击败。思路一 我们来尝试攻击目标发现其血量在依次降低，到了第五次恢复满，于是就有想法去搜索其生命值，第一次未知就搜未知的值，后面生命值减少时，搜减少的值，当生命值增加时，再去搜增加的值来锁定血量的地址。当我们第一次搜减小的值发现有很多值，于是我们还要继续这样来搜索以便">
+<meta property="og:description" content="crackme_test1查壳 这个Crackme是一个外国OD教程教程中的一个很经典的Crackme,今天我也做了一下，来看看到底是什么样子的。首先还是先去查一下壳。PEID显示其是MASM32写的。那我们就先用IDA来看一下。  IDA分析 还是先输入一个测试数据来先试试，输入用户名为 qweqwe, 密码随便输入一个比如 1111111 ,发现弹出了错误提示的字符串，然后我们就直接IDA来看">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-1.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-2.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-3.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-4.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-5.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-7.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-8.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-9.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-10.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-11.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-12.jpg">
-<meta property="og:updated_time" content="2019-09-27T04:11:03.582Z">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test1.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Crackme_test2.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Crackme_test2.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test4.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test5.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test6.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test7.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/raw/image/crackme_test8.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test9.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test10.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test11jpg.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test_result.jpg">
+<meta property="og:updated_time" content="2019-11-16T03:57:34.284Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CE小游戏第一关">
-<meta name="twitter:description" content="CE小游戏第一关 这次首先来讲一下CE自带的小游戏的第一关，第一关的意思就是每发射5次子弹目标就会重新恢复生命，我们要做的就是把目标击败。思路一 我们来尝试攻击目标发现其血量在依次降低，到了第五次恢复满，于是就有想法去搜索其生命值，第一次未知就搜未知的值，后面生命值减少时，搜减少的值，当生命值增加时，再去搜增加的值来锁定血量的地址。当我们第一次搜减小的值发现有很多值，于是我们还要继续这样来搜索以便">
-<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-1.jpg">
+<meta name="twitter:title" content="crackme_test1">
+<meta name="twitter:description" content="crackme_test1查壳 这个Crackme是一个外国OD教程教程中的一个很经典的Crackme,今天我也做了一下，来看看到底是什么样子的。首先还是先去查一下壳。PEID显示其是MASM32写的。那我们就先用IDA来看一下。  IDA分析 还是先输入一个测试数据来先试试，输入用户名为 qweqwe, 密码随便输入一个比如 1111111 ,发现弹出了错误提示的字符串，然后我们就直接IDA来看">
+<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test1.jpg">
 
 
 
@@ -130,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/11/CE小游戏第一关/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/crackme_test1/">
 
 
 
@@ -140,7 +141,7 @@
   };
 </script>
 
-  <title>CE小游戏第一关 | 一护的Blog</title>
+  <title>crackme_test1 | 一护的Blog</title>
   
 
 
@@ -366,7 +367,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/CE小游戏第一关/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/crackme_test1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bleach一护">
@@ -383,7 +384,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CE小游戏第一关
+          <h1 class="post-title" itemprop="name headline">crackme_test1
 
               
             
@@ -409,7 +410,7 @@
                 
               
 
-              <time title="创建时间：2019-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-11T00:00:00+08:00">2019-08-11</time>
+              <time title="创建时间：2019-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-03T00:00:00+08:00">2019-11-03</time>
             
 
             
@@ -426,7 +427,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-27 12:11:03" itemprop="dateModified" datetime="2019-09-27T12:11:03+08:00">2019-09-27</time>
+                <time title="修改时间：2019-11-16 11:57:34" itemprop="dateModified" datetime="2019-11-16T11:57:34+08:00">2019-11-16</time>
               
             
           </span>
@@ -444,8 +445,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/11/CE小游戏第一关/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/11/CE小游戏第一关/" itemprop="commentCount"></span>
+                <a href="/2019/11/03/crackme_test1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/03/crackme_test1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,7 +454,7 @@
 
           
           
-            <span id="/2019/08/11/CE小游戏第一关/" class="leancloud_visitors" data-flag-title="CE小游戏第一关">
+            <span id="/2019/11/03/crackme_test1/" class="leancloud_visitors" data-flag-title="crackme_test1">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -478,7 +479,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.5k</span>
+                <span title="本文字数">6.8k</span>
               
 
               
@@ -492,7 +493,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -512,16 +513,49 @@
       
 
       
-        <h3 id="CE小游戏第一关"><a href="#CE小游戏第一关" class="headerlink" title="CE小游戏第一关"></a>CE小游戏第一关</h3><ul>
-<li>这次首先来讲一下CE自带的小游戏的第一关，第一关的意思就是每发射5次子弹目标就会重新恢复生命，我们要做的就是把目标击败。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-1.jpg" alt="小游戏的第一关"><h4 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h4></li>
-<li>我们来尝试攻击目标发现其血量在依次降低，到了第五次恢复满，于是就有想法去搜索其生命值，第一次未知就搜未知的值，后面生命值减少时，搜减少的值，当生命值增加时，再去搜增加的值来锁定血量的地址。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-2.jpg" alt="初次搜索"><br>当我们第一次搜减小的值发现有很多值，于是我们还要继续这样来搜索以便减少无用的地址量。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-3.jpg" alt="第四次搜索"></li>
-<li>当我们在搜索到第4次发现一个值只有4，很符合我们的需求，于是我们再测第五次来验证我们的想法。第五次搜索后其值更改回了100，于是我们可以确定这个地址就是我们要找的血量地址。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-4.jpg" alt="第五次搜索"></li>
-<li>我们找到了地址以后肯定想着要去改变它的值，好让我们通关，于是我们来看看是什么地方改变其值的，<strong>ctrl+f6</strong> 走着，找到了改变其值的代码，于是我们肯定想着去更改代码。于是我们在这里进行代码注入。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-5.jpg" alt="能修改血量的代码"></li>
-<li>我们把其值改为0，然后再去打它发现我们就已经成功了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-7.jpg" alt="代码注入修改其值"><br>于是我们就已经采用这种方法完成了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-8.jpg" alt="结果图"></li>
+        <h3 id="crackme-test1"><a href="#crackme-test1" class="headerlink" title="crackme_test1"></a>crackme_test1</h3><h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4><ul>
+<li>这个Crackme是一个外国OD教程教程中的一个很经典的Crackme,今天我也做了一下，来看看到底是什么样子的。首先还是先去查一下壳。PEID显示其是MASM32写的。那我们就先用IDA来看一下。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test1.jpg" alt="查壳信息"></li>
 </ul>
-<h4 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h4><ul>
-<li>我们发现我们的子弹只有五发，于是另一个想法就是我们把子弹的数量改为很多不久也可以改变其值，于是我们就顺着这个思路来做。但是再测试中我也尝试在子弹只有五发的时候来搜索5，但是顺着这个思路走，发现根本无法找到我们想要的结果，于是我就想子弹应该是存在数组中的，通过函数来减小其值，于是就有了一个想法就是数组在入栈的时候，其第一个值如array[0],应该是最靠近栈顶的，<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-9.jpg" alt="简单的数组例子">,这样我们就能更加直观的体会到我们应该怎么样去查了，我们在想想假如存了5发子弹我们可以正向的记录打出的子弹，也可以记录剩下多少子弹，于是我们就猜测数组里存放的是打了几发子弹（这样便于记录）,于是我们在第一次搜索0，第二次搜索1，依次类推。以这种方式我们成功的找到子弹数量的地址，于是我们还是要再次代码注入。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-10.jpg" alt="子弹数量"></li>
-<li>观察代码可以看出其值是每次加1，也就是说和我们猜测的一致，于是我们只要把1改为0就可以了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-11.jpg" alt="原始代码"><br>-当我们把子弹改为 <em>add 00</em> 我们便可以发现子弹的数量就不会变了，于是我们变成功了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ce-12.jpg" alt="结果图"><h4 id="这样我们第一关就结束了！！！！！！"><a href="#这样我们第一关就结束了！！！！！！" class="headerlink" title="这样我们第一关就结束了！！！！！！"></a>这样我们第一关就结束了！！！！！！</h4></li>
+<h4 id="IDA分析"><a href="#IDA分析" class="headerlink" title="IDA分析"></a>IDA分析</h4><ul>
+<li><p>还是先输入一个测试数据来先试试，输入用户名为 <em>qweqwe</em>, 密码随便输入一个比如 <em>1111111</em> ,发现弹出了错误提示的字符串，然后我们就直接IDA来看详细的信息。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Crackme_test2.jpg" alt="错误提示"></p>
+</li>
+<li><p>IDA载入后F5一下，我们能够看到这个程序使用的是标准的windows消息循环，在main函数中就是一个标准的窗口的注册和创建过程。在这其中最重要的就是窗口的事件处理函数，<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/Crackme_test2.jpg" alt="main函数中的过程"><br>也就是回调函数。在这个程序中就是 <strong>WndProc</strong>，这样一个函数，跟进去看一下。这个消息处理函数中最重要的就是两个用if语句判断，再去调用函数 DialogBoxParamA去生成子对话框的部分，不过其中第一个子窗口是生成帮助窗口的，也就是说真正的判断窗口是第二个if语句来生成的，我们直接去分析这个部分的子窗口的回调函数。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test4.jpg" alt="回调函数"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test5.jpg" alt="子窗口的回调函数"></p>
+</li>
+<li>跟进第二个子窗口的回调函数也就是 <strong>sub_401253</strong> 这样一个函数，内容如下，其中 <strong>case 0x110u</strong> 是初始化dialog用的，主要看 <em>case 0x110u</em> 这个是对WM_COMMAND来进行处理的，这个也就是获得用户名和密码输入的也没什么大用处。回到WndProc函数中接着分析。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">case 0x110u:</span><br><span class="line">      return SetFocus(hWnd);</span><br><span class="line">    case 0x111u:</span><br><span class="line">      while ( 1 )</span><br><span class="line">      &#123;</span><br><span class="line">        a1 = 0;</span><br><span class="line">        if ( a4 == 1003 )</span><br><span class="line">          break;</span><br><span class="line">        if ( a4 != 1002 )</span><br><span class="line">          return 0;</span><br><span class="line">        a4 = 1003;</span><br><span class="line">        if ( GetDlgItemTextA(hWnd, 1000, String, 11) &gt;= 1 )</span><br><span class="line">        &#123;</span><br><span class="line">          GetDlgItemTextA(hWnd, 1001, byte_40217E, 11);</span><br><span class="line">          a1 = 1;</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      break;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test6.jpg" alt="sub_401253函数"><br>-接着就是一个很重要的函数对用户名的处理，也就是sub_40137E这个函数，跟进去看一下，里面的结果看起来很不舒畅，而且如果这道题只用IDA的F5分析，最后的结果也是不正确的，从这一步起，我推荐用OD去分析。OD载入开始</p>
+<h4 id="OD-分析后面的部分"><a href="#OD-分析后面的部分" class="headerlink" title="OD 分析后面的部分"></a>OD 分析后面的部分</h4><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test7.jpg" alt="OD载入下断点"></p>
+<ul>
+<li>载入OD后我们在0x401228处下断点，因为在这里之后的一个call就是IDA中的sub_40137E这个函数。直接运行输入我们的测试数据，我们直接跟进这个函数。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/raw/image/crackme_test8.jpg" alt="输入测试数据"></li>
+<li><p>对于sub_40137E函数，它做的事情就是</p>
+<ol>
+<li>比较用户名的每一位是否是小于 <em>‘A’</em> 的如果小于’A’直接就退出.</li>
+<li>比较用户名的每一位是否是大于 <em>‘Z’</em> 如果大于Z就会触发另一个函数，而这个函数的作用就是使原来的那一位字母的ascii值减32，也就是小写转大写。</li>
+<li>把用户名的每一位的ascii值相加得到的结果再去异或0X5678<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test9.jpg" alt="sub_40137E函数的功能"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test10.jpg" alt="4013D2函数的功能"></li>
+</ol>
+<ul>
+<li>之后就是对4013D8函数的分析，这个函数是对密码进行处理的。</li>
+</ul>
+<ol>
+<li>首先是取密码的每一位然后减去0x30，之后再用一个变量(初始值为0)乘以0xA。</li>
+<li>然后就是把这个变量的值加上密码减去0x30的值重新赋给变量。</li>
+<li>最后的结果再异或0x1234<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test11jpg.jpg" alt="4013D8函数的功能"></li>
+</ol>
+<ul>
+<li><p>最后就是一个比较，比较两个函数处理后的值是否相等，相等就会弹出成功的messagebox。</p>
+</li>
+<li><p>但是这里我们就要想一想，这个判断的表达式为f1(用户名)=f2(密码)，但是我们随便输入一个密码比如“111”，这个函数再没有XOR0x1234前处理后的结果为”6F”,也就是’111’的16进制。也就是说再没有异或前就是把10进制转为16进制，这样我们就能通过用户名得到结果了， <strong>我们就只要把用户名通过第一个函数的处理再去异或0x1234得到一个十进制数，然后再通过f2函数的处理一定是正确的结果</strong>(异或运算是可逆的)。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="注册机的编写"><a href="#注册机的编写" class="headerlink" title="注册机的编写"></a>注册机的编写</h4><ul>
+<li>分析完就很简单，只要模拟一下第一个函数的过程得到的结果再去异或0x1234就可以了。代码如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">str1=input(&quot;请输入你的用户名: &quot;)</span><br><span class="line">list1=[]</span><br><span class="line">temp=0</span><br><span class="line">sum=0</span><br><span class="line">for i in str1:</span><br><span class="line">    list1.append(i)</span><br><span class="line">for j in list1:</span><br><span class="line">    if j&gt;&apos;Z&apos;:</span><br><span class="line">        temp=ord(j)-32</span><br><span class="line">    if j&lt;&apos;A&apos;:</span><br><span class="line">        print(&quot;输入有误！&quot;)</span><br><span class="line">    if j&gt;&apos;A&apos; and j&lt;&apos;Z&apos;:</span><br><span class="line">        temp=ord(j)</span><br><span class="line">    sum+=temp</span><br><span class="line">sum=sum^0x5678^0x1234</span><br><span class="line">print(sum)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ul>
+<li>用注册机随便写个用户名输入判断。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_test_result.jpg" alt="结果图"></li>
 </ul>
 
       
@@ -577,8 +611,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/22/160个crackme40/" rel="next" title="160个crackme40">
-                <i class="fa fa-chevron-left"></i> 160个crackme40
+              <a href="/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/" rel="next" title="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳">
+                <i class="fa fa-chevron-left"></i> 以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳
               </a>
             
           </div>
@@ -586,10 +620,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/02/160个crackme44/" rel="prev" title="160个crackme44">
-                160个crackme44 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -775,7 +805,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CE小游戏第一关"><span class="nav-number">1.</span> <span class="nav-text">CE小游戏第一关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路一"><span class="nav-number">1.1.</span> <span class="nav-text">思路一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路二"><span class="nav-number">1.2.</span> <span class="nav-text">思路二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#这样我们第一关就结束了！！！！！！"><span class="nav-number">1.3.</span> <span class="nav-text">这样我们第一关就结束了！！！！！！</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#crackme-test1"><span class="nav-number">1.</span> <span class="nav-text">crackme_test1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查壳"><span class="nav-number">1.1.</span> <span class="nav-text">查壳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IDA分析"><span class="nav-number">1.2.</span> <span class="nav-text">IDA分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OD-分析后面的部分"><span class="nav-number">1.3.</span> <span class="nav-text">OD 分析后面的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册机的编写"><span class="nav-number">1.4.</span> <span class="nav-text">注册机的编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">1.5.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></div>
             
 
           </div>
