@@ -98,29 +98,33 @@
 
 
 
-  <meta name="description" content="160个crackme44还是先打开程序观察观察  这个程序打开一看就知道不是英文，所以也不用在乎那么多直接百度翻译查什么意思，随便输入用户名和密码后，出现一堆不认识的字符百度翻译说的是 错误不要再尝试了，哎呦这真的是瞧不起我喽。那么我们直接去搞定它！  查壳 直接拖入peid中查看信息.看到是delphi的程序就想着直接dark神器走起，结果是dark无法对其进行解析。。。。。。。无奈只能自己去">
+  <meta name="description" content="160个crackme18首先来看一下程序 程序的界面就只要输入一个注册码，所以可以直接认定是明码在程序中应该直接存在的，我们直接OD来看看程序。  OD载入程序 我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入">
 <meta name="keywords" content="Hexo,破解基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="160个crackme44">
-<meta property="og:url" content="http://yoursite.com/2019/10/02/160个crackme44/index.html">
+<meta property="og:title" content="160个crackme18and19">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/160个crackme18and19/index.html">
 <meta property="og:site_name" content="一护的Blog">
-<meta property="og:description" content="160个crackme44还是先打开程序观察观察  这个程序打开一看就知道不是英文，所以也不用在乎那么多直接百度翻译查什么意思，随便输入用户名和密码后，出现一堆不认识的字符百度翻译说的是 错误不要再尝试了，哎呦这真的是瞧不起我喽。那么我们直接去搞定它！  查壳 直接拖入peid中查看信息.看到是delphi的程序就想着直接dark神器走起，结果是dark无法对其进行解析。。。。。。。无奈只能自己去">
+<meta property="og:description" content="160个crackme18首先来看一下程序 程序的界面就只要输入一个注册码，所以可以直接认定是明码在程序中应该直接存在的，我们直接OD来看看程序。  OD载入程序 我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-0.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-1.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-2.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-3.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-4.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-5.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-6.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-7.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-8.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-jieguo.jpg">
-<meta property="og:updated_time" content="2019-10-08T11:36:35.279Z">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_0.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_1.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_2.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_3.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_0.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_1.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_2.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_3.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_4.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_5.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_6.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_7.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_8.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_jieguo.jpg">
+<meta property="og:updated_time" content="2019-11-19T06:02:40.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="160个crackme44">
-<meta name="twitter:description" content="160个crackme44还是先打开程序观察观察  这个程序打开一看就知道不是英文，所以也不用在乎那么多直接百度翻译查什么意思，随便输入用户名和密码后，出现一堆不认识的字符百度翻译说的是 错误不要再尝试了，哎呦这真的是瞧不起我喽。那么我们直接去搞定它！  查壳 直接拖入peid中查看信息.看到是delphi的程序就想着直接dark神器走起，结果是dark无法对其进行解析。。。。。。。无奈只能自己去">
-<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-0.jpg">
+<meta name="twitter:title" content="160个crackme18and19">
+<meta name="twitter:description" content="160个crackme18首先来看一下程序 程序的界面就只要输入一个注册码，所以可以直接认定是明码在程序中应该直接存在的，我们直接OD来看看程序。  OD载入程序 我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入">
+<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_0.jpg">
 
 
 
@@ -129,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/02/160个crackme44/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/30/160个crackme18and19/">
 
 
 
@@ -139,7 +143,7 @@
   };
 </script>
 
-  <title>160个crackme44 | 一护的Blog</title>
+  <title>160个crackme18and19 | 一护的Blog</title>
   
 
 
@@ -365,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/02/160个crackme44/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/160个crackme18and19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bleach一护">
@@ -382,7 +386,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">160个crackme44
+          <h1 class="post-title" itemprop="name headline">160个crackme18and19
 
               
             
@@ -408,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2019-10-02 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-02T00:00:00+08:00">2019-10-02</time>
+              <time title="创建时间：2019-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-30T00:00:00+08:00">2019-10-30</time>
             
 
             
@@ -425,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-08 19:36:35" itemprop="dateModified" datetime="2019-10-08T19:36:35+08:00">2019-10-08</time>
+                <time title="修改时间：2019-11-19 14:02:40" itemprop="dateModified" datetime="2019-11-19T14:02:40+08:00">2019-11-19</time>
               
             
           </span>
@@ -443,8 +447,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/10/02/160个crackme44/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/02/160个crackme44/" itemprop="commentCount"></span>
+                <a href="/2019/10/30/160个crackme18and19/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/10/30/160个crackme18and19/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -452,7 +456,7 @@
 
           
           
-            <span id="/2019/10/02/160个crackme44/" class="leancloud_visitors" data-flag-title="160个crackme44">
+            <span id="/2019/10/30/160个crackme18and19/" class="leancloud_visitors" data-flag-title="160个crackme18and19">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -477,7 +481,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.9k</span>
+                <span title="本文字数">6.5k</span>
               
 
               
@@ -491,7 +495,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -511,31 +515,45 @@
       
 
       
-        <h3 id="160个crackme44"><a href="#160个crackme44" class="headerlink" title="160个crackme44"></a>160个crackme44</h3><h4 id="还是先打开程序观察观察"><a href="#还是先打开程序观察观察" class="headerlink" title="还是先打开程序观察观察"></a>还是先打开程序观察观察</h4><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-0.jpg" alt="程序"></p>
-<ul>
-<li>这个程序打开一看就知道不是英文，所以也不用在乎那么多直接百度翻译查什么意思，随便输入用户名和密码后，出现一堆不认识的字符百度翻译说的是 <strong>错误不要再尝试了</strong>，哎呦这真的是瞧不起我喽。那么我们直接去搞定它！</li>
+        <h3 id="160个crackme18"><a href="#160个crackme18" class="headerlink" title="160个crackme18"></a>160个crackme18</h3><h4 id="首先来看一下程序"><a href="#首先来看一下程序" class="headerlink" title="首先来看一下程序"></a>首先来看一下程序</h4><ul>
+<li>程序的界面就只要输入一个注册码，所以可以直接认定是明码在程序中应该直接存在的，我们直接OD来看看程序。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_0.jpg" alt="程序界面"></li>
 </ul>
-<h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4><ul>
-<li>直接拖入peid中查看信息.<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-1.jpg" alt="查看信息"><br>看到是delphi的程序就想着直接dark神器走起，结果是dark无法对其进行解析。。。。。。。无奈只能自己去找。<br>那就先用ida添加个delphi的标签方便我们看函数,导出map文件后就直接OD来分析。</li>
-</ul>
-<h4 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h4><ul>
-<li>打开OD这次我们就直接搜索unicode，我们可以看到那个错误提示信息的地址，于是推测上一个不认识的字符串就应该是成功的地址，于是我们直接定位到那个地址。<img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-2.jpg" alt="查unicode码"></li>
-<li>我们往上找可以找到这个事件的入口，我们入口处设置断点然后去分析整个算法的逻辑。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-3.jpg" alt="分析"><br>这里刚开始就先获取用户名的信息，然后把大写字母的输入转成小写字母，然后获得密码。再获取完密码后有一个判断：如果用户名长度小于6，就会跳出一段不认识的字符串来告诉你小于6.之后一段就是一个switch语句的分析了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-4.jpg" alt="switch语句分析"></li>
-<li>我们看到movzx之后就知道这个应该是循环取用户名的位数然后再把它-97后和19进行比较如果大于19就跳转。然后我们可以看到其只是对61-7A进行筛选，也就是小写字母从 <em>a-z</em> 来选。这里还有一点要注意 <strong>[ecx+edx-1]</strong>，这个地址的第一次指向不是我们认为的用户名的第一位，而是其前一个地址，恒等于0的一个byte位，之后就是大段的case分支了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-5.jpg" alt="case分支1"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-6.jpg" alt="case分支2"></li>
-<li>这里我们可以看到其实就是作者给每一个字母都换了值，除了这些字母外其它的都是直接赋给了0x5D这个值。并且把它们的值都累加起来放在bl中，这里也要特别注意一下: <em>bl只是一个8位的寄存器只能放2个十六进制数所以不要弄错了</em>，再之后就是一个循环了我们可以看到会循环6次但是只能取到用户名的5位，这里也表明输入太长的用户名也没什么影响。我们再接着往下分析。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-7.jpg" alt="关键的地方"></li>
-<li>这里我们看到用eax乘以0x4a7e，而eax中存放的正是用户名的长度，也就是用户名长度乘以0x4a7e，之后就是 <strong>mov al,bl</strong> 后的代码也就是把我们计算后的结果也转为10进制，之后把这两个值用 <em>“-”</em><br>连接起来，我们可以看一下栈里的内容.<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-8.jpg" alt="栈内的内容"><br>这里我们就能清楚的看到了密码到底是怎样的了，于是我们就写注册机来还原一下密码生成的过程。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">list1=[0x18,0x25,0x42,0x0c,0x0d,0x6,0x36,0x2b,0x17,0x2f,0x13,0x82,0x9b,0x92,0x3,0x63,0x21,0x42,0x5c,0x29,0xc7,0x66,0x58,0x0a,0x28,0x50]</span><br><span class="line">str1=input(&quot;请输入你的用户名&quot;)</span><br><span class="line">len1=int(len(str1)*0x4a7e)</span><br><span class="line">str2=list(str1)</span><br><span class="line">for i in range(0,len(str1)):</span><br><span class="line">    if ord(str2[i])&gt;=65 and ord(str2[i])&lt;=90: #大写转小写</span><br><span class="line">        str2[i]=chr(ord(str2[i])+32)</span><br><span class="line">for i in range(0,len(str1)):</span><br><span class="line">    if ord(str2[i])&gt;=97 and ord(str2[i])&lt;=122:</span><br><span class="line">        str2[i]=ord(str2[i])-97</span><br><span class="line">    else:</span><br><span class="line">        str2[i]=0x5d</span><br><span class="line">temp =0x5d  </span><br><span class="line">for i in range(0,5):</span><br><span class="line">    if str2[i]==0x5d:</span><br><span class="line">        temp+=str2[i]</span><br><span class="line">    else:</span><br><span class="line">        temp+=list1[str2[i]]</span><br><span class="line">temp1=str(hex(temp))#得到总的值后转为16进制</span><br><span class="line">list2=list(temp1)</span><br><span class="line"># 这里我们只要byte位所以只要最后两个字符就好了</span><br><span class="line">list3=[list2[-1],list2[-2]]</span><br><span class="line">list3.reverse()</span><br><span class="line">temp2=0</span><br><span class="line">for i in range(0,len(list3)):</span><br><span class="line">    if ord(list3[i])&gt;=97 and ord(list3[i])&lt;=102:</span><br><span class="line">        list3[i]=ord(list3[i])-87</span><br><span class="line">    temp2+=int(list3[i])*pow(16,len(list3)-i-1)</span><br><span class="line">#因为不知道怎么用python直接把字符串转为16进制绕了这一大圈才完成这个转换</span><br><span class="line">print(str(temp2)+&apos;-&apos;+str(len1))</span><br></pre></td></tr></table></figure>
+<h4 id="OD载入程序"><a href="#OD载入程序" class="headerlink" title="OD载入程序"></a>OD载入程序</h4><ul>
+<li><p>我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入内容的长度，如果长度大于1就跳到比较函数那。我们直接在这个函数上下断点。当我们执行到比较函数那里时，就出现了明码也就应该是正确的序列号。这里的注册码为 <strong><brd-sob></brd-sob></strong><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_1.jpg" alt="字符串比较函数"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_2.jpg" alt="注册码"></p>
+</li>
+<li><p>我们把注册码在输入到原程序中，发现正确。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_3.jpg" alt="结果"></p>
 </li>
 </ul>
-<p>算法流程：</p>
+<h3 id="160个crackme19"><a href="#160个crackme19" class="headerlink" title="160个crackme19"></a>160个crackme19</h3><h4 id="还是看一下程序"><a href="#还是看一下程序" class="headerlink" title="还是看一下程序"></a>还是看一下程序</h4><ul>
+<li>这次的程序就多了一个输入，是典型的用户名-注册码的形式，我们直接直接用PEID来查看一下详细的信息。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_0.jpg" alt="程序界面"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_1.jpg" alt="PEID查看信息"></li>
+<li>查看信息发现是VC6写的，这里我们可以用IDA来直接去分析比较简单和快捷。不过我在这里还是用OD来分析一下。</li>
+</ul>
+<h4 id="OD载入程序-1"><a href="#OD载入程序-1" class="headerlink" title="OD载入程序"></a>OD载入程序</h4><ul>
+<li>用OD还是要先去搜索字符串向上去查找信息，我们的目标是找到注册码的生成算法。</li>
+<li>找到了错误提示信息，跟进去在上面的代码中又发现了上一题中的正确注册码，但是在这一题中很明显是有用户名的，所以我们继续往上去找。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_2.jpg" alt="错误提示代码"></li>
+<li>继续往上看代码，在地址为 <strong>0x401551</strong> 处我们发现了一个很常见的win32api，就是 <em>GetDlgItemTextA</em> 这个函数，而且在下面也调用了一次，就说明这里是来获得用户名和密码的，我们在此设断点来接着分析。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_3.jpg" alt="获得用户名和密码"></li>
+<li>随便输入一个用户名和密码，我这里用户名输入的是 <strong>AAAAAAA</strong> ，我们接着单步走，之后会有一个函数来获得用户名的长度并比较长度是否小于5。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_4.jpg" alt="用户名长度判断函数"></li>
+<li>之后如果长度符合就会跳到关键函数了，首先这个函数会调用另一个函数来获得用户名每一位的ascii值。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_5.jpg" alt="获得用户名ascii"></li>
+<li>之后就是关键：</li>
+</ul>
 <ol>
-<li>用户名长度乘以0x4a7e</li>
-<li>计算用户名的前5位的值的和（字母查表，其余都为0x5d），并且要加上一个0x5d的值</li>
-<li>用“——”连接起来</li>
+<li>首先从[ebp-10]中获得一个值，这个值首先要加上用户名的一位ascii值（循环每一位），并且得到的结果仍然保存在[ebp-10]中。</li>
+<li>之后设置循环次数为i（每次取一位，直到取完所有的用户名），在把循环次数左移8位，之后用[ebp-10]里的值来异或移位后的值，并把结果保存在[ebp-10]中。</li>
+<li>把用户名的长度乘以循环次数，相当于len(用户名)* i，之后再把结果取反，之后把取反后的结果乘以i+1。最后再把[ebp-10]中的值乘以得到的结果</li>
 </ol>
 <ul>
-<li>我在写这个的时候没有判断长度的问题，自己知道长度就好了啊啊啊。但是还是要说一说 <strong>这个byte位真的很坑啊，我绕了半天才绕完</strong>，欢迎大家给出好的写法。<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4></li>
-<li>这样下来我们就完成了，测试一下是否正确。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme44-jieguo.jpg" alt="结果图"><br>我测试了很多都是成功的，这样我们这一题就大功告成了！！！！！！</li>
+<li>用公式来表示为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ebp-10]^=i&lt;&lt;8</span><br><span class="line">[ebp-10]*=(i+1)*(~(len(username)*i))</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_6.jpg" alt="算法主体"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_7.jpg" alt="初始时的栈空间"></p>
+<ul>
+<li>注册码的计算就是这样的，我们直接去写注册机。</li>
+</ul>
+<h4 id="注册机的编写"><a href="#注册机的编写" class="headerlink" title="注册机的编写"></a>注册机的编写</h4><ul>
+<li>这里我刚开始写的犯了很大的错误，用python写的时侯一直不对，每次得到的结果都比实际答案多了几百倍，比如下图。后来我才意识到是c++的int的精度不够，但是python的精度比c++要高，所以得到的结果不正确。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_8.jpg" alt="python得到的结果"><br>之后用c写了一份得到了正确的答案，给出下面的注册代码:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;Windows.h&gt;</span><br><span class="line">#include&lt;string.h&gt;</span><br><span class="line">void test1()</span><br><span class="line">&#123;</span><br><span class="line">	char name[15] = &#123;0&#125;;</span><br><span class="line">	int sum1 = 0x81276345;</span><br><span class="line"></span><br><span class="line">		printf(&quot;请输入你的用户名: \t&quot;);</span><br><span class="line">		scanf_s(&quot;%s&quot;, name, 15);</span><br><span class="line">		int strlen_1 = strlen(name);</span><br><span class="line">		if (strlen_1 &lt; 5)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;输入的用户名不能小于5！&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int i = 0; i &lt; strlen_1; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum1 += name[i];</span><br><span class="line">			sum1 ^= i &lt;&lt; 8;</span><br><span class="line">			sum1 *= (i + 1) * (~(i * strlen_1));</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;%d \n&quot;, sum1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	test1();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_jieguo.jpg" alt="结果图"></p>
 
       
     </div>
@@ -590,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/11/CE小游戏第一关/" rel="next" title="CE小游戏第一关">
-                <i class="fa fa-chevron-left"></i> CE小游戏第一关
+              <a href="/2019/10/10/以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳/" rel="next" title="以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳">
+                <i class="fa fa-chevron-left"></i> 以xctf的一道crackme来简单的讲讲esp定律脱简单的压缩壳
               </a>
             
           </div>
@@ -600,8 +618,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/09/160个crackme-shadow/" rel="prev" title="160个crackme-shadow">
-                160个crackme-shadow <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/03/crackme_test1/" rel="prev" title="crackme_test1">
+                crackme_test1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -788,7 +806,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#160个crackme44"><span class="nav-number">1.</span> <span class="nav-text">160个crackme44</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#还是先打开程序观察观察"><span class="nav-number">1.1.</span> <span class="nav-text">还是先打开程序观察观察</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查壳"><span class="nav-number">1.2.</span> <span class="nav-text">查壳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法分析"><span class="nav-number">1.3.</span> <span class="nav-text">算法分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">1.4.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#160个crackme18"><span class="nav-number">1.</span> <span class="nav-text">160个crackme18</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先来看一下程序"><span class="nav-number">1.1.</span> <span class="nav-text">首先来看一下程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OD载入程序"><span class="nav-number">1.2.</span> <span class="nav-text">OD载入程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#160个crackme19"><span class="nav-number">2.</span> <span class="nav-text">160个crackme19</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#还是看一下程序"><span class="nav-number">2.1.</span> <span class="nav-text">还是看一下程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OD载入程序-1"><span class="nav-number">2.2.</span> <span class="nav-text">OD载入程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册机的编写"><span class="nav-number">2.3.</span> <span class="nav-text">注册机的编写</span></a></li></ol></li></ol></div>
             
 
           </div>
