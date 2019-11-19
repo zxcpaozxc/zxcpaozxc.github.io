@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_7.jpg">
 <meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_8.jpg">
 <meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_jieguo.jpg">
-<meta property="og:updated_time" content="2019-11-19T06:02:40.027Z">
+<meta property="og:updated_time" content="2019-11-19T06:18:08.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="160个crackme18and19">
 <meta name="twitter:description" content="160个crackme18首先来看一下程序 程序的界面就只要输入一个注册码，所以可以直接认定是明码在程序中应该直接存在的，我们直接OD来看看程序。  OD载入程序 我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-19 14:02:40" itemprop="dateModified" datetime="2019-11-19T14:02:40+08:00">2019-11-19</time>
+                <time title="修改时间：2019-11-19 14:18:08" itemprop="dateModified" datetime="2019-11-19T14:18:08+08:00">2019-11-19</time>
               
             
           </span>
@@ -519,7 +519,7 @@
 <li>程序的界面就只要输入一个注册码，所以可以直接认定是明码在程序中应该直接存在的，我们直接OD来看看程序。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_0.jpg" alt="程序界面"></li>
 </ul>
 <h4 id="OD载入程序"><a href="#OD载入程序" class="headerlink" title="OD载入程序"></a>OD载入程序</h4><ul>
-<li><p>我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入内容的长度，如果长度大于1就跳到比较函数那。我们直接在这个函数上下断点。当我们执行到比较函数那里时，就出现了明码也就应该是正确的序列号。这里的注册码为 <strong><brd-sob></brd-sob></strong><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_1.jpg" alt="字符串比较函数"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_2.jpg" alt="注册码"></p>
+<li><p>我们载入程序后直接来搜索字符串，找到我们刚刚看到的错误提示的字符串，然后跟进去。我们发现在错误提示上面就有一个字符串cmp的比较函数，那就可以直接推测出这个函数就是来比较输入和序列号的。再往上看就可以看到一个字符串的len函数，获得输入内容的长度，如果长度大于1就跳到比较函数那。我们直接在这个函数上下断点。当我们执行到比较函数那里时，就出现了明码也就应该是正确的序列号。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_1.jpg" alt="字符串比较函数"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_2.jpg" alt="注册码"></p>
 </li>
 <li><p>我们把注册码在输入到原程序中，发现正确。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme18_3.jpg" alt="结果"></p>
 </li>
@@ -542,7 +542,7 @@
 <li>把用户名的长度乘以循环次数，相当于len(用户名)* i，之后再把结果取反，之后把取反后的结果乘以i+1。最后再把[ebp-10]中的值乘以得到的结果</li>
 </ol>
 <ul>
-<li>用公式来表示为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ebp-10]^=i&lt;&lt;8</span><br><span class="line">[ebp-10]*=(i+1)*(~(len(username)*i))</span><br></pre></td></tr></table></figure>
+<li>用公式来表示为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ebp-10]+=ord(username[i])</span><br><span class="line">[ebp-10]^=i&lt;&lt;8</span><br><span class="line">[ebp-10]*=(i+1)*(~(len(username)*i))</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_6.jpg" alt="算法主体"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme19_7.jpg" alt="初始时的栈空间"></p>
@@ -841,7 +841,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">22k</span>
   
 
   
@@ -880,7 +880,7 @@
     
 	<span title="post.totalcount">
      12.8k字 </span>
-    <!--<span title="站点总字数">21k</span>-->
+    <!--<span title="站点总字数">22k</span>-->
   
 
         
