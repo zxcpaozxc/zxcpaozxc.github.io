@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Windows保护模式学习1-双机调试环境使用xp系统</title>
+      <link href="/20203/11/01/Windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A01-%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8xp%E7%B3%BB%E7%BB%9F/"/>
+      <url>/20203/11/01/Windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A01-%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8xp%E7%B3%BB%E7%BB%9F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Windows双机调试环境的搭建"><a href="#Windows双机调试环境的搭建" class="headerlink" title="Windows双机调试环境的搭建"></a>Windows双机调试环境的搭建</h3><h4 id="配置虚拟机"><a href="#配置虚拟机" class="headerlink" title="配置虚拟机"></a>配置虚拟机</h4><ul><li><p>最近正好在学习windows的内核相关的知识，要想调试高2G的内存空间就必须要有双机调试环境。我这里用的虚拟机为VirtualBox,在VBOX中要在你要调试的系统添加串口，右键设置选择 <em>串口</em> ，然后启用串口1，<strong>端口模式选择“主机管道”</strong> <em>注意不要勾选连接至现有的管道或套接字</em> ，然后在路径中填写以下路径 <strong>\.\pipe\com_1</strong> 之后进入虚拟机。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%951.jpg" alt="添加串口"></p></li><li><p>在Windows XP系统中要想进入调试模式要在 <em>root.ini</em> 文件中添加描述才能够进入调试模式。加入下面的描述即可 <strong>multi(0)disk(0)rdisk(0)partition(1)\WINDOWS=”Microsoft Windows XP Professional” /noexecute=optin /fastdetect /debug /debugport=COM2 /baudrate=115200</strong> 我这里XP系统是用的串口2<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E5%87%BB%E8%B0%83%E8%AF%952.jpg" alt="修改boot.ini"></p></li><li>这之后我们重启虚拟机之后可以发现可以进入调试模式。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%953.jpg" alt="虚拟机调试模式完成"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%954.jpg" alt="Windbg配置"></li><li>之后打开Windbg,选择 <em>File\Kernel Debug</em> 然后配置虚拟机的信息按照下面的方法配置<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi5.jpg" alt="选择串口来调试"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi6.jpg" alt="加载虚拟机"></li><li>配置完成后，就会出现下面这个画面windbg一直卡在一个界面，这是我们按 <strong>Ctrl+break</strong> 键来让虚拟机强制中断(这时已经在windbg的调试下了),按完这个键之后等一会就能看到下面的内容.我们发现其已经断下，在去点击虚拟机里的鼠标键盘已经不能使用，说明确实断下了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi7.jpg" alt="ctrl+break"></li><li>最后查看一下GDT表来确定环境搭建成功<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi8.jpg" alt="查看GDT表"></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+          <category> Windows Kernel </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Windows Kernel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>dll简单编程</title>
       <link href="/2019/12/29/%E7%AE%80%E5%8D%95dll%E7%BC%96%E7%A8%8B/"/>
       <url>/2019/12/29/%E7%AE%80%E5%8D%95dll%E7%BC%96%E7%A8%8B/</url>
