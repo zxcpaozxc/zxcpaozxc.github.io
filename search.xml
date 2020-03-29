@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Windows保护模式学习2-段寄存器属性</title>
+      <link href="/2020/03/22/windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7/"/>
+      <url>/2020/03/22/windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7/</url>
+      
+        <content type="html"><![CDATA[<h3 id="Windows保护模式学习-段寄存器属性"><a href="#Windows保护模式学习-段寄存器属性" class="headerlink" title="Windows保护模式学习-段寄存器属性"></a>Windows保护模式学习-段寄存器属性</h3><h4 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h4><ul><li>windows保护模式的两种机制分别是：<em>段与页</em> 主要保护的是 <em>1内存 2特权指令</em> 段寄存器一共有8个分别是 <strong>ES,CS,SS,DS,FS,GS,LDTR,TR</strong> 段寄存器共有96位但实际只可见16位(段选择子)结构体表示为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct SegMent&#123;</span><br><span class="line">  WORD selector,</span><br><span class="line">  WORD attributes,</span><br><span class="line">  DWORD base,</span><br><span class="line">  DWORD limit</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>段寄存器在读的时候只能读16位，写的时候写96位，在od中可以看到段寄存器的状况，打开OD用OD随便去打开一个<br>exe文件来观察段寄存器的情况，可以看到段选择子，base与limit观察可看出只有 <em>fs寄存器</em> 的limit与base与其他的寄存器不同 <strong>其他的段寄存器的base为0，fs寄存器的base不为0，而fs寄存器的limit为0xfff,其他为0xffffffff</strong> ，这是fs寄存器的特别之处，同样特别的还有一个CS寄存器它的Attributes属性为可读可执行但是不可写，我们可以来写代码验证一下它的属性来证实这些特征。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_1.jpg" alt="段寄存器"></p><ul><li>首先来验证一下Attributes属性这个检测很简单就是只要比较一下CS与其他的段寄存器的可写属性就可以，我们写一段汇编来测试一下就知道，当执行ds=es时候不会报错，但是执行ds=cs时候会报错因为cs不可写。当执行 <strong>mov ax,cs</strong> 这一段时会报错因为cs不可写.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int var = 0;</span><br><span class="line">__asm &#123;</span><br><span class="line">mov ax,es    </span><br><span class="line">//mov ax,cs //cs寄存器可读可执行，不可写</span><br><span class="line">mov ds,ax//注意这里不是简单的传值这里ds=cs</span><br><span class="line">mov dword ptr ds:[var],eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_2.jpg" alt="CS寄存器不可写"></p><ul><li><p>接着说明的是fs段寄存器的base，因为我们知道对于进程来说可用的空间为4GB（32位）其中的低2G为用户区，高2G为内核区，其中0x0-0x10000为空指针赋值区，可就是不可以读的区。如果fs段寄存器可读那就说明base存在。定义一个全局变量swsize来存值,如果不出错说明fs的base是存在的。我们可以看到读取值成功。说明base存在。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_3.jpg" alt="fs寄存器base存在"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">__asm &#123;</span><br><span class="line">  mov ax,fs</span><br><span class="line">  mov gs,ax</span><br><span class="line">  mov eax,gs:[0]//fs是有基地址的这里是base+0</span><br><span class="line">  mov dword ptr ds:[var],eax</span><br><span class="line">  mov swsize,eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>说明fs的limit属性,因为fs寄存器的limit属性为0xfff，比起base的值要小我们只要在base上加一个值确认一下，即可。可以看到直接报错这说明fs寄存器的limit属性确实存在。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int var = 1;</span><br><span class="line">__asm &#123;</span><br><span class="line">  mov ax, fs</span><br><span class="line">  mov gs, ax</span><br><span class="line">  //mov eax, gs: [0x1000]</span><br><span class="line">  //fs段寄存器的limits只有0xfff，而fs的base是比起大的越界</span><br><span class="line">  mov eax,dword ptr ds:[0x7FFDF000+0x1000]</span><br><span class="line">  mov dword ptr ds:[var],eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_4.jpg" alt="fs寄存器的limit属性存在"></p><ul><li>这样段的基本属性就基本掌握了，下一次就来总结段选择子以及段描述符。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+          <category> Windows Kernel </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Windows Kernel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows保护模式学习1-双机调试环境使用xp系统</title>
       <link href="/2020/03/11/Windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A01-%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8xp%E7%B3%BB%E7%BB%9F/"/>
       <url>/2020/03/11/Windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A01-%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8xp%E7%B3%BB%E7%BB%9F/</url>
@@ -245,35 +274,6 @@
     
     
     <entry>
-      <title>正则表达式学习1</title>
-      <link href="/2019/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F1/"/>
-      <url>/2019/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F1/</url>
-      
-        <content type="html"><![CDATA[<h3 id="正则表达式的初步学习"><a href="#正则表达式的初步学习" class="headerlink" title="正则表达式的初步学习"></a>正则表达式的初步学习</h3><p>第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重拾一下自己的知识。</p><hr><hr><ol><li><p>正则表达式是什么？</p><ul><li>正则表达式<em>在菜鸟教程中的概念如下</em>：<blockquote><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等</p></blockquote></li><li>我的个人理解就是来对文本进行匹配的。</li></ul></li><li><p>正则表达式的基础规则：</p><ul><li>位置标记： <strong>位置标记锚点</strong>是表识字符串位置的正则表达式。</li></ul></li></ol><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:left">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">^</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的首部</td><td style="text-align:center">^zxc可匹配以zxc为首的行</td></tr><tr><td style="text-align:left">$</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的尾部</td><td style="text-align:center">zxc$可匹配以zxc结尾的行</td></tr></tbody></table><ul><li>标识符: <strong>标识符是正则表达式的基础部分</strong></li></ul><table><thead><tr><th style="text-align:center">正则表达式</th><th style="text-align:center">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:center">.</td><td style="text-align:center">匹配任意一个字符</td><td style="text-align:center">asq.可以匹配asq1或者asqe 但是不能匹配asqer 其只能匹配单个的字符</td></tr><tr><td style="text-align:center">[ ]</td><td style="text-align:center">匹配括号中的任意一个字符，中括号内可以为字符组或者字符范围</td><td style="text-align:center">par[kj]可以匹配park或者parj ,[0-9]可以匹配任意的单个数字</td></tr><tr><td style="text-align:center">[ ^ ]</td><td style="text-align:center">匹配不在中括号中的任意一个字符</td><td style="text-align:center">这个就比较好理解如 9[^12]就不能匹配91 或者 92</td></tr></tbody></table><ul><li>数量修饰符:  <strong>数量修饰符定义了模式可出现的次数</strong></li></ul><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:right">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">?</td><td style="text-align:right">只能够匹配之前的项1次或者0次</td><td style="text-align:center">courl?可以匹配courl 或者是cour</td></tr><tr><td style="text-align:left">+</td><td style="text-align:right">匹配之前的一项1次或者多次</td><td style="text-align:center">courl+ 可以匹配courl或者 courll 等等</td></tr><tr><td style="text-align:left">*</td><td style="text-align:right">可以匹配之前的一项0次或者多次</td><td style="text-align:center">c * ourl可以匹配 courl或者ccourl或者是ourl 等等</td></tr><tr><td style="text-align:left">{n}</td><td style="text-align:right">匹配之前的项n次</td><td style="text-align:center">如[0-9]{2} 能够匹配任意的两位数</td></tr><tr><td style="text-align:left">{n,}</td><td style="text-align:right">之前的项至少要匹配n次</td><td style="text-align:center">如[0-9]{4}能够匹配任意一个4位数或者更多位的数字</td></tr><tr><td style="text-align:left">{n,m}</td><td style="text-align:right">之前的项匹配的最小次数与最多次数</td><td style="text-align:center">[0-9]{2,5}匹配两位数到五位数之前的任何数字</td></tr></tbody></table><hr><p>正则表达式的基本规则大概就是这些，之后会给出如何匹配出你想要得到的数据</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Hexo </category>
-          
-          <category> 正则表达式学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Hexo </tag>
-            
-            <tag> 正则表达式学习 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CE的基础练习</title>
       <link href="/2019/02/06/CE%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0/"/>
       <url>/2019/02/06/CE%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0/</url>
@@ -295,6 +295,35 @@
             <tag> Hexo </tag>
             
             <tag> Cheat Engine </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>正则表达式学习1</title>
+      <link href="/2019/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F1/"/>
+      <url>/2019/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F1/</url>
+      
+        <content type="html"><![CDATA[<h3 id="正则表达式的初步学习"><a href="#正则表达式的初步学习" class="headerlink" title="正则表达式的初步学习"></a>正则表达式的初步学习</h3><p>第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重拾一下自己的知识。</p><hr><hr><ol><li><p>正则表达式是什么？</p><ul><li>正则表达式<em>在菜鸟教程中的概念如下</em>：<blockquote><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等</p></blockquote></li><li>我的个人理解就是来对文本进行匹配的。</li></ul></li><li><p>正则表达式的基础规则：</p><ul><li>位置标记： <strong>位置标记锚点</strong>是表识字符串位置的正则表达式。</li></ul></li></ol><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:left">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">^</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的首部</td><td style="text-align:center">^zxc可匹配以zxc为首的行</td></tr><tr><td style="text-align:left">$</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的尾部</td><td style="text-align:center">zxc$可匹配以zxc结尾的行</td></tr></tbody></table><ul><li>标识符: <strong>标识符是正则表达式的基础部分</strong></li></ul><table><thead><tr><th style="text-align:center">正则表达式</th><th style="text-align:center">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:center">.</td><td style="text-align:center">匹配任意一个字符</td><td style="text-align:center">asq.可以匹配asq1或者asqe 但是不能匹配asqer 其只能匹配单个的字符</td></tr><tr><td style="text-align:center">[ ]</td><td style="text-align:center">匹配括号中的任意一个字符，中括号内可以为字符组或者字符范围</td><td style="text-align:center">par[kj]可以匹配park或者parj ,[0-9]可以匹配任意的单个数字</td></tr><tr><td style="text-align:center">[ ^ ]</td><td style="text-align:center">匹配不在中括号中的任意一个字符</td><td style="text-align:center">这个就比较好理解如 9[^12]就不能匹配91 或者 92</td></tr></tbody></table><ul><li>数量修饰符:  <strong>数量修饰符定义了模式可出现的次数</strong></li></ul><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:right">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">?</td><td style="text-align:right">只能够匹配之前的项1次或者0次</td><td style="text-align:center">courl?可以匹配courl 或者是cour</td></tr><tr><td style="text-align:left">+</td><td style="text-align:right">匹配之前的一项1次或者多次</td><td style="text-align:center">courl+ 可以匹配courl或者 courll 等等</td></tr><tr><td style="text-align:left">*</td><td style="text-align:right">可以匹配之前的一项0次或者多次</td><td style="text-align:center">c * ourl可以匹配 courl或者ccourl或者是ourl 等等</td></tr><tr><td style="text-align:left">{n}</td><td style="text-align:right">匹配之前的项n次</td><td style="text-align:center">如[0-9]{2} 能够匹配任意的两位数</td></tr><tr><td style="text-align:left">{n,}</td><td style="text-align:right">之前的项至少要匹配n次</td><td style="text-align:center">如[0-9]{4}能够匹配任意一个4位数或者更多位的数字</td></tr><tr><td style="text-align:left">{n,m}</td><td style="text-align:right">之前的项匹配的最小次数与最多次数</td><td style="text-align:center">[0-9]{2,5}匹配两位数到五位数之前的任何数字</td></tr></tbody></table><hr><p>正则表达式的基本规则大概就是这些，之后会给出如何匹配出你想要得到的数据</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+          <category> 正则表达式学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> 正则表达式学习 </tag>
             
         </tags>
       

@@ -98,23 +98,23 @@
 
 
 
-  <meta name="description" content="dll编程dll是什么 dll文件是windows所特有的动态链接库文件，是应用程序的一个模块，主要用来导出一些函数和数据来供程序中的其它模块来使用。比如我们要使用MessageBoxA这个函数，我们就要从user32.dll中导入此函数来供我们使用，但是windows操作系统会为我们导入一些必须的dll，如果我们想要开发自己的模块函数就要自己去编写dll，来动态的加载。dll与exe的关系 dl">
-<meta name="keywords" content="Hexo,dll编程">
+  <meta name="description" content="Windows保护模式学习-段寄存器属性段寄存器 windows保护模式的两种机制分别是：段与页 主要保护的是 1内存 2特权指令 段寄存器一共有8个分别是 ES,CS,SS,DS,FS,GS,LDTR,TR 段寄存器共有96位但实际只可见16位(段选择子)结构体表示为：123456struct SegMent&amp;#123;  WORD selector,  WORD attributes,  DW">
+<meta name="keywords" content="Hexo,Windows Kernel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dll简单编程">
-<meta property="og:url" content="http://yoursite.com/2019/12/29/简单dll编程/index.html">
+<meta property="og:title" content="Windows保护模式学习2-段寄存器属性">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/windows保护模式学习之段寄存器的属性/index.html">
 <meta property="og:site_name" content="一护的Blog">
-<meta property="og:description" content="dll编程dll是什么 dll文件是windows所特有的动态链接库文件，是应用程序的一个模块，主要用来导出一些函数和数据来供程序中的其它模块来使用。比如我们要使用MessageBoxA这个函数，我们就要从user32.dll中导入此函数来供我们使用，但是windows操作系统会为我们导入一些必须的dll，如果我们想要开发自己的模块函数就要自己去编写dll，来动态的加载。dll与exe的关系 dl">
+<meta property="og:description" content="Windows保护模式学习-段寄存器属性段寄存器 windows保护模式的两种机制分别是：段与页 主要保护的是 1内存 2特权指令 段寄存器一共有8个分别是 ES,CS,SS,DS,FS,GS,LDTR,TR 段寄存器共有96位但实际只可见16位(段选择子)结构体表示为：123456struct SegMent&amp;#123;  WORD selector,  WORD attributes,  DW">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll1.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll2.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll4.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ell5.jpg">
-<meta property="og:updated_time" content="2020-03-09T12:17:40.904Z">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_1.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_2.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_3.jpg">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_4.jpg">
+<meta property="og:updated_time" content="2020-03-29T09:30:07.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dll简单编程">
-<meta name="twitter:description" content="dll编程dll是什么 dll文件是windows所特有的动态链接库文件，是应用程序的一个模块，主要用来导出一些函数和数据来供程序中的其它模块来使用。比如我们要使用MessageBoxA这个函数，我们就要从user32.dll中导入此函数来供我们使用，但是windows操作系统会为我们导入一些必须的dll，如果我们想要开发自己的模块函数就要自己去编写dll，来动态的加载。dll与exe的关系 dl">
-<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll1.jpg">
+<meta name="twitter:title" content="Windows保护模式学习2-段寄存器属性">
+<meta name="twitter:description" content="Windows保护模式学习-段寄存器属性段寄存器 windows保护模式的两种机制分别是：段与页 主要保护的是 1内存 2特权指令 段寄存器一共有8个分别是 ES,CS,SS,DS,FS,GS,LDTR,TR 段寄存器共有96位但实际只可见16位(段选择子)结构体表示为：123456struct SegMent&amp;#123;  WORD selector,  WORD attributes,  DW">
+<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_1.jpg">
 
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/29/简单dll编程/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/22/windows保护模式学习之段寄存器的属性/">
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>dll简单编程 | 一护的Blog</title>
+  <title>Windows保护模式学习2-段寄存器属性 | 一护的Blog</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/29/简单dll编程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/windows保护模式学习之段寄存器的属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bleach一护">
@@ -376,7 +376,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dll简单编程
+          <h1 class="post-title" itemprop="name headline">Windows保护模式学习2-段寄存器属性
 
               
             
@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-29T00:00:00+08:00">2019-12-29</time>
+              <time title="创建时间：2020-03-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-22T00:00:00+08:00">2020-03-22</time>
             
 
             
@@ -419,11 +419,36 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-09 20:17:40" itemprop="dateModified" datetime="2020-03-09T20:17:40+08:00">2020-03-09</time>
+                <time title="修改时间：2020-03-29 17:30:07" itemprop="dateModified" datetime="2020-03-29T17:30:07+08:00">2020-03-29</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/Windows-Kernel/" itemprop="url" rel="index"><span itemprop="name">Windows Kernel</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -437,8 +462,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/12/29/简单dll编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/29/简单dll编程/" itemprop="commentCount"></span>
+                <a href="/2020/03/22/windows保护模式学习之段寄存器的属性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/22/windows保护模式学习之段寄存器的属性/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -446,7 +471,7 @@
 
           
           
-            <span id="/2019/12/29/简单dll编程/" class="leancloud_visitors" data-flag-title="dll简单编程">
+            <span id="/2020/03/22/windows保护模式学习之段寄存器的属性/" class="leancloud_visitors" data-flag-title="Windows保护模式学习2-段寄存器属性">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -471,7 +496,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4.8k</span>
+                <span title="本文字数">4.5k</span>
               
 
               
@@ -505,31 +530,27 @@
       
 
       
-        <h3 id="dll编程"><a href="#dll编程" class="headerlink" title="dll编程"></a>dll编程</h3><h4 id="dll是什么"><a href="#dll是什么" class="headerlink" title="dll是什么"></a>dll是什么</h4><ul>
-<li>dll文件是windows所特有的动态链接库文件，是应用程序的一个模块，主要用来导出一些函数和数据来供程序中的其它模块来使用。比如我们要使用MessageBoxA这个函数，我们就要从user32.dll中导入此函数来供我们使用，但是windows操作系统会为我们导入一些必须的dll，如果我们想要开发自己的模块函数就要自己去编写dll，来动态的加载。<h4 id="dll与exe的关系"><a href="#dll与exe的关系" class="headerlink" title="dll与exe的关系"></a>dll与exe的关系</h4></li>
-<li>dll和exe本质上都是windows的可移植文件都是遵循windows PE结构的。动态链接库文件本质上与可执行文件没有大的区别。都是作为模块被加载到进程的空间地址的。<h4 id="创建一个dll文件"><a href="#创建一个dll文件" class="headerlink" title="创建一个dll文件"></a>创建一个dll文件</h4><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll1.jpg" alt="dll的创建"></li>
-<li>创建一个dll也很简单，我们就直接打开vs2019，创建一个动态链接库文件， 如图，然后我们创建完以后，vs会为我们自动生成一些代码。</li>
-<li>动态链接库文件的入口是 <em>BOOL APIENTRY DllMain( HMODULE hModule,DWORD  ul_reason_for_call,LPVOID lpReserved)</em> 这里的 <strong>APIENTRY</strong> 是函数的调用方式，默认为stdcall。<strong>HMODULE</strong> 是dll的模块句柄，下一个参数<br><strong>DWORD ul_reason_for_call</strong> 是指调用的原因，最后一个参数没有被使用。因为DllMain函数是仅供操作系统使用的我们不能把导出函数写在DllMain中，我们在写导出函数时也是可以有两种导出方式一种按名称导出，一种按序号导出。我们这种重点接绍按名称导出。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include&quot;pch.h&quot;</span><br><span class="line">BOOL APIENTRY DllMain( HMODULE hModule,</span><br><span class="line">                       DWORD  ul_reason_for_call,</span><br><span class="line">                       LPVOID lpReserved</span><br><span class="line">                     )</span><br><span class="line">&#123;</span><br><span class="line">    switch (ul_reason_for_call)</span><br><span class="line">    &#123;</span><br><span class="line">    case DLL_PROCESS_ATTACH:</span><br><span class="line">    case DLL_THREAD_ATTACH:</span><br><span class="line">    case DLL_THREAD_DETACH:</span><br><span class="line">    case DLL_PROCESS_DETACH:</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">    return TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Windows保护模式学习-段寄存器属性"><a href="#Windows保护模式学习-段寄存器属性" class="headerlink" title="Windows保护模式学习-段寄存器属性"></a>Windows保护模式学习-段寄存器属性</h3><h4 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h4><ul>
+<li>windows保护模式的两种机制分别是：<em>段与页</em> 主要保护的是 <em>1内存 2特权指令</em> 段寄存器一共有8个分别是 <strong>ES,CS,SS,DS,FS,GS,LDTR,TR</strong> 段寄存器共有96位但实际只可见16位(段选择子)结构体表示为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct SegMent&#123;</span><br><span class="line">  WORD selector,</span><br><span class="line">  WORD attributes,</span><br><span class="line">  DWORD base,</span><br><span class="line">  DWORD limit</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="编写导出函数"><a href="#编写导出函数" class="headerlink" title="编写导出函数"></a>编写导出函数</h4><p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll2.jpg" alt="声明"></p>
+<p>段寄存器在读的时候只能读16位，写的时候写96位，在od中可以看到段寄存器的状况，打开OD用OD随便去打开一个<br>exe文件来观察段寄存器的情况，可以看到段选择子，base与limit观察可看出只有 <em>fs寄存器</em> 的limit与base与其他的寄存器不同 <strong>其他的段寄存器的base为0，fs寄存器的base不为0，而fs寄存器的limit为0xfff,其他为0xffffffff</strong> ，这是fs寄存器的特别之处，同样特别的还有一个CS寄存器它的Attributes属性为可读可执行但是不可写，我们可以来写代码验证一下它的属性来证实这些特征。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_1.jpg" alt="段寄存器"></p>
 <ul>
-<li><p>首先我们要做的是在头文件中声明一下导出函数，而我们写的下面的代码,就是说我们如果按照c++的标准，就定义 <em>EXPORT</em> 关键字为导出函数的格式，也就是说我们在写导出函数时声明就只要加上 <em>EXPORT</em> 即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#ifdef __cplusplus</span><br><span class="line">#define EXPORT extern&quot;C&quot;__declspec(dllexport)</span><br><span class="line">#else</span><br><span class="line">#define EXPORT extern&quot;C&quot;__declspec(dllexport)</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>声明完成后我们就可以来写一个导出函数，就以一个最简单的例子来写，就是一个加法函数，我们在头文件中声名一下，然后在一个新的文件中使用。</p>
+<li>首先来验证一下Attributes属性这个检测很简单就是只要比较一下CS与其他的段寄存器的可写属性就可以，我们写一段汇编来测试一下就知道，当执行ds=es时候不会报错，但是执行ds=cs时候会报错因为cs不可写。当执行 <strong>mov ax,cs</strong> 这一段时会报错因为cs不可写.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int var = 0;</span><br><span class="line">__asm &#123;</span><br><span class="line">	mov ax,es    </span><br><span class="line">	//mov ax,cs //cs寄存器可读可执行，不可写</span><br><span class="line">	mov ds,ax//注意这里不是简单的传值这里ds=cs</span><br><span class="line">	mov dword ptr ds:[var],eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="装载期间动态加载"><a href="#装载期间动态加载" class="headerlink" title="装载期间动态加载"></a>装载期间动态加载</h4><ul>
-<li>dll动态链接库文件的导出的函数可以有两种使用方式，第一种是在装载期间动态加载，这种方式需要我们把刚刚写好的dll程序生成的后缀为 <em>.dll和.lib</em> 文件放在我们需要使用导出函数的程序，在我们编写时要加上下面这些话，而且还要显示的声明一下我们要用的导出函数。之后我们就能够使用我们的函数了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#pragma comment(&quot;lib&quot;,&quot;lib文件名&quot;)</span><br><span class="line">extern “C” __declspec(dllimport) void Plus(int x, int y);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll4.jpg" alt="使用dll导出的函数"></p>
+<p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_2.jpg" alt="CS寄存器不可写"></p>
 <ul>
-<li>这种方式的缺点就是如果没有lib文件就不能够使用了。</li>
+<li><p>接着说明的是fs段寄存器的base，因为我们知道对于进程来说可用的空间为4GB（32位）其中的低2G为用户区，高2G为内核区，其中0x0-0x10000为空指针赋值区，可就是不可以读的区。如果fs段寄存器可读那就说明base存在。定义一个全局变量swsize来存值,如果不出错说明fs的base是存在的。我们可以看到读取值成功。说明base存在。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_3.jpg" alt="fs寄存器base存在"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">__asm &#123;</span><br><span class="line">  mov ax,fs</span><br><span class="line">  mov gs,ax</span><br><span class="line">  mov eax,gs:[0]//fs是有基地址的这里是base+0</span><br><span class="line">  mov dword ptr ds:[var],eax</span><br><span class="line">  mov swsize,eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>说明fs的limit属性,因为fs寄存器的limit属性为0xfff，比起base的值要小我们只要在base上加一个值确认一下，即可。可以看到直接报错这说明fs寄存器的limit属性确实存在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int var = 1;</span><br><span class="line">__asm &#123;</span><br><span class="line">  mov ax, fs</span><br><span class="line">  mov gs, ax</span><br><span class="line">  //mov eax, gs: [0x1000]</span><br><span class="line">  //fs段寄存器的limits只有0xfff，而fs的base是比起大的越界</span><br><span class="line">  mov eax,dword ptr ds:[0x7FFDF000+0x1000]</span><br><span class="line">  mov dword ptr ds:[var],eax</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="运行时动态加载"><a href="#运行时动态加载" class="headerlink" title="运行时动态加载"></a>运行时动态加载</h4><ul>
-<li>这种方式我们要用到一个很好用的函数LoadLibary以及GetProcAddress函数来动态的加载函数，这两个函数中，LoadLibary函数可以加载目标dll文件，GetProcAddress函数可以获得目标dll中的指定的导出函数的地址。我们只要定义一个函数指针指向此函数就可以了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/ell5.jpg" alt="运行时加载"></li>
+<p><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/duan_4.jpg" alt="fs寄存器的limit属性存在"></p>
+<ul>
+<li>这样段的基本属性就基本掌握了，下一次就来总结段选择子以及段描述符。</li>
 </ul>
 
       
@@ -572,7 +593,7 @@
           
             <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
           
-            <a href="/tags/dll编程/" rel="tag"><i class="fa fa-tag"></i> dll编程</a>
+            <a href="/tags/Windows-Kernel/" rel="tag"><i class="fa fa-tag"></i> Windows Kernel</a>
           
         </div>
       
@@ -585,8 +606,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/03/crackme_test1/" rel="next" title="crackme_test1">
-                <i class="fa fa-chevron-left"></i> crackme_test1
+              <a href="/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/" rel="next" title="Windows保护模式学习1-双机调试环境使用xp系统">
+                <i class="fa fa-chevron-left"></i> Windows保护模式学习1-双机调试环境使用xp系统
               </a>
             
           </div>
@@ -594,10 +615,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/" rel="prev" title="Windows保护模式学习1-双机调试环境使用xp系统">
-                Windows保护模式学习1-双机调试环境使用xp系统 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -789,7 +806,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#dll编程"><span class="nav-number">1.</span> <span class="nav-text">dll编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dll是什么"><span class="nav-number">1.1.</span> <span class="nav-text">dll是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dll与exe的关系"><span class="nav-number">1.2.</span> <span class="nav-text">dll与exe的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个dll文件"><span class="nav-number">1.3.</span> <span class="nav-text">创建一个dll文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写导出函数"><span class="nav-number">1.4.</span> <span class="nav-text">编写导出函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装载期间动态加载"><span class="nav-number">1.5.</span> <span class="nav-text">装载期间动态加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时动态加载"><span class="nav-number">1.6.</span> <span class="nav-text">运行时动态加载</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows保护模式学习-段寄存器属性"><span class="nav-number">1.</span> <span class="nav-text">Windows保护模式学习-段寄存器属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#段寄存器"><span class="nav-number">1.1.</span> <span class="nav-text">段寄存器</span></a></li></ol></li></ol></div>
             
 
           </div>
