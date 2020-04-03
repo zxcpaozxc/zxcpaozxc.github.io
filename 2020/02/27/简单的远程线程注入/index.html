@@ -98,27 +98,22 @@
 
 
 
-  <meta name="description" content="Windows双机调试环境的搭建配置虚拟机 最近正好在学习windows的内核相关的知识，要想调试高2G的内存空间就必须要有双机调试环境。我这里用的虚拟机为VirtualBox,在VBOX中要在你要调试的系统添加串口，右键设置选择 串口 ，然后启用串口1，端口模式选择“主机管道” 注意不要勾选连接至现有的管道或套接字 ，然后在路径中填写以下路径 \.\pipe\com_1 之后进入虚拟机。  在W">
-<meta name="keywords" content="Hexo,Windows Kernel">
+  <meta name="description" content="远程线程注入远程线程注入的使用 远程线程注入是曾经木马技术常用的隐藏手段主要就是要把自己的程序以dll形式远程加载到别的进程中，远程线程注入是跨进程的。 远程线程的实现主要就是使用函数CreateRemoteThread来创建的,主要参数第一个就是要创建远程线程的进程句柄,第四个是远程线程的回调函数地址，第5个参数为传递给回调函数的参数。为什么能够用远程线程函数来实现dll注入呢，这主要就是线程函">
+<meta name="keywords" content="Hexo,dll编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows保护模式学习1-双机调试环境使用xp系统">
-<meta property="og:url" content="http://yoursite.com/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/index.html">
+<meta property="og:title" content="简单的远程线程注入">
+<meta property="og:url" content="http://yoursite.com/2020/02/27/简单的远程线程注入/index.html">
 <meta property="og:site_name" content="一护的Blog">
-<meta property="og:description" content="Windows双机调试环境的搭建配置虚拟机 最近正好在学习windows的内核相关的知识，要想调试高2G的内存空间就必须要有双机调试环境。我这里用的虚拟机为VirtualBox,在VBOX中要在你要调试的系统添加串口，右键设置选择 串口 ，然后启用串口1，端口模式选择“主机管道” 注意不要勾选连接至现有的管道或套接字 ，然后在路径中填写以下路径 \.\pipe\com_1 之后进入虚拟机。  在W">
+<meta property="og:description" content="远程线程注入远程线程注入的使用 远程线程注入是曾经木马技术常用的隐藏手段主要就是要把自己的程序以dll形式远程加载到别的进程中，远程线程注入是跨进程的。 远程线程的实现主要就是使用函数CreateRemoteThread来创建的,主要参数第一个就是要创建远程线程的进程句柄,第四个是远程线程的回调函数地址，第5个参数为传递给回调函数的参数。为什么能够用远程线程函数来实现dll注入呢，这主要就是线程函">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%951.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E5%87%BB%E8%B0%83%E8%AF%952.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%953.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%954.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi5.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi6.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi7.jpg">
-<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi8.jpg">
-<meta property="og:updated_time" content="2020-03-22T09:52:29.352Z">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru1.png">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru2.png">
+<meta property="og:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru3.jpg">
+<meta property="og:updated_time" content="2020-04-03T14:18:47.785Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows保护模式学习1-双机调试环境使用xp系统">
-<meta name="twitter:description" content="Windows双机调试环境的搭建配置虚拟机 最近正好在学习windows的内核相关的知识，要想调试高2G的内存空间就必须要有双机调试环境。我这里用的虚拟机为VirtualBox,在VBOX中要在你要调试的系统添加串口，右键设置选择 串口 ，然后启用串口1，端口模式选择“主机管道” 注意不要勾选连接至现有的管道或套接字 ，然后在路径中填写以下路径 \.\pipe\com_1 之后进入虚拟机。  在W">
-<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%951.jpg">
+<meta name="twitter:title" content="简单的远程线程注入">
+<meta name="twitter:description" content="远程线程注入远程线程注入的使用 远程线程注入是曾经木马技术常用的隐藏手段主要就是要把自己的程序以dll形式远程加载到别的进程中，远程线程注入是跨进程的。 远程线程的实现主要就是使用函数CreateRemoteThread来创建的,主要参数第一个就是要创建远程线程的进程句柄,第四个是远程线程的回调函数地址，第5个参数为传递给回调函数的参数。为什么能够用远程线程函数来实现dll注入呢，这主要就是线程函">
+<meta name="twitter:image" content="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru1.png">
 
 
 
@@ -127,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/27/简单的远程线程注入/">
 
 
 
@@ -137,7 +132,7 @@
   };
 </script>
 
-  <title>Windows保护模式学习1-双机调试环境使用xp系统 | 一护的Blog</title>
+  <title>简单的远程线程注入 | 一护的Blog</title>
   
 
 
@@ -363,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/简单的远程线程注入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="bleach一护">
@@ -380,7 +375,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Windows保护模式学习1-双机调试环境使用xp系统
+          <h1 class="post-title" itemprop="name headline">简单的远程线程注入
 
               
             
@@ -406,7 +401,7 @@
                 
               
 
-              <time title="创建时间：2020-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-11T00:00:00+08:00">2020-03-11</time>
+              <time title="创建时间：2020-02-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-27T00:00:00+08:00">2020-02-27</time>
             
 
             
@@ -423,36 +418,11 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-22 17:52:29" itemprop="dateModified" datetime="2020-03-22T17:52:29+08:00">2020-03-22</time>
+                <time title="修改时间：2020-04-03 22:18:47" itemprop="dateModified" datetime="2020-04-03T22:18:47+08:00">2020-04-03</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/Windows-Kernel/" itemprop="url" rel="index"><span itemprop="name">Windows Kernel</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -466,8 +436,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/" itemprop="commentCount"></span>
+                <a href="/2020/02/27/简单的远程线程注入/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/27/简单的远程线程注入/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -475,7 +445,7 @@
 
           
           
-            <span id="/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/" class="leancloud_visitors" data-flag-title="Windows保护模式学习1-双机调试环境使用xp系统">
+            <span id="/2020/02/27/简单的远程线程注入/" class="leancloud_visitors" data-flag-title="简单的远程线程注入">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -500,7 +470,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2k</span>
+                <span title="本文字数">11k</span>
               
 
               
@@ -514,7 +484,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">10 分钟</span>
               
             </div>
           
@@ -534,15 +504,27 @@
       
 
       
-        <h3 id="Windows双机调试环境的搭建"><a href="#Windows双机调试环境的搭建" class="headerlink" title="Windows双机调试环境的搭建"></a>Windows双机调试环境的搭建</h3><h4 id="配置虚拟机"><a href="#配置虚拟机" class="headerlink" title="配置虚拟机"></a>配置虚拟机</h4><ul>
-<li><p>最近正好在学习windows的内核相关的知识，要想调试高2G的内存空间就必须要有双机调试环境。我这里用的虚拟机为VirtualBox,在VBOX中要在你要调试的系统添加串口，右键设置选择 <em>串口</em> ，然后启用串口1，<strong>端口模式选择“主机管道”</strong> <em>注意不要勾选连接至现有的管道或套接字</em> ，然后在路径中填写以下路径 <strong>\.\pipe\com_1</strong> 之后进入虚拟机。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%951.jpg" alt="添加串口"></p>
+        <h3 id="远程线程注入"><a href="#远程线程注入" class="headerlink" title="远程线程注入"></a>远程线程注入</h3><h4 id="远程线程注入的使用"><a href="#远程线程注入的使用" class="headerlink" title="远程线程注入的使用"></a>远程线程注入的使用</h4><ul>
+<li>远程线程注入是曾经木马技术常用的隐藏手段主要就是要把自己的程序以dll形式远程加载到别的进程中，远程线程注入是跨进程的。</li>
+<li>远程线程的实现主要就是使用函数CreateRemoteThread来创建的,主要参数第一个就是要创建远程线程的进程句柄,第四个是远程线程的回调函数地址，第5个参数为传递给回调函数的参数。为什么能够用远程线程函数来实现dll注入呢，这主要就是线程函数与 <strong>LoadLibrary函数</strong> 类似除了返回类型与参数类型不同外其余的函数格式都相同，这也就是说我们可以强制类型转换来使其一致，这样的话我们就能够去调用loadlibrary函数去加载dll，来实现注入。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">HANDLE CreateRemoteThread(</span><br><span class="line">  HANDLE                 hProcess,</span><br><span class="line">  LPSECURITY_ATTRIBUTES  lpThreadAttributes,</span><br><span class="line">  SIZE_T                 dwStackSize,</span><br><span class="line">  LPTHREAD_START_ROUTINE lpStartAddress,</span><br><span class="line">  LPVOID                 lpParameter,</span><br><span class="line">  DWORD                  dwCreationFlags,</span><br><span class="line">  LPDWORD                lpThreadId</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">HMODULE LoadLibraryA(</span><br><span class="line">  LPCSTR lpLibFileName</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">DWORD WINAPI ThreadProc(</span><br><span class="line">  LPVOID lpParameter</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>确定好大方向后我们就来细化如何去一步一步的实现注入。</li>
+</ul>
+<ol>
+<li>首先就是要获得要注入进程的句柄，如何获得进程句柄方法有很多，这里我就是要用进程快照 <em>CreateToolhelp32Snapshot ，Process32First，Process32Next</em> 来遍历获得进程id。</li>
+<li>进而使用 <em>OpenProcess</em> 函数来获得进程句柄。</li>
+<li>在获得完进程句柄后，我们就要在原进程中加入我们要注入的dll，这里我们就要使用两个API函数来在原进程中开辟空间再写入数据，一个函数是 <strong>VirtualAllocEx</strong> 来在原进程中开辟一个可写入的空间，接着使用 <strong>WriteProcessMemory</strong> 函数来向原进程写入我们的dll。</li>
+<li>最后的工作就是要获得 <strong>LoadLibraryA</strong> 的函数地址，使用GetProcAddress函数来获得LoadLibraryA的函数地址，最后在使用 <strong>CreateRemoteThread</strong> 函数来创建远程线程就可以了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">LPVOID VirtualAllocEx(</span><br><span class="line">  HANDLE hProcess,</span><br><span class="line">  LPVOID lpAddress,</span><br><span class="line">  SIZE_T dwSize,</span><br><span class="line">  DWORD  flAllocationType, //申请的内存状态</span><br><span class="line">  DWORD  flProtect //申请的内存属性</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">BOOL WriteProcessMemory(</span><br><span class="line">  HANDLE  hProcess,</span><br><span class="line">  LPVOID  lpBaseAddress,</span><br><span class="line">  LPCVOID lpBuffer,</span><br><span class="line">  SIZE_T  nSize,</span><br><span class="line">  SIZE_T  *lpNumberOfBytesWritten</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在Windows XP系统中要想进入调试模式要在 <em>root.ini</em> 文件中添加描述才能够进入调试模式。加入下面的描述即可 <strong>multi(0)disk(0)rdisk(0)partition(1)\WINDOWS=”Microsoft Windows XP Professional” /noexecute=optin /fastdetect /debug /debugport=COM2 /baudrate=115200</strong> 我这里XP系统是用的串口2<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E5%87%BB%E8%B0%83%E8%AF%952.jpg" alt="修改boot.ini"></p>
+</ol>
+<ul>
+<li><p>主要代码如下，我是用MFC写的用到的控件有CListBox，CMFCEditBrowseCtrl.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">void CMFCinjectDlg::OnBnClickedButton1()</span><br><span class="line">//获得进程pid的函数</span><br><span class="line">&#123;</span><br><span class="line">	HANDLE hProcess = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);</span><br><span class="line">	m_list.ResetContent();</span><br><span class="line">	if (FALSE == hProcess)</span><br><span class="line">	&#123;</span><br><span class="line">		AfxMessageBox(TEXT(&quot;出现错误&quot;));</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	PROCESSENTRY32 pi;</span><br><span class="line">	//SYSTEM_INFO sys;</span><br><span class="line">	pi.dwSize = sizeof(pi);</span><br><span class="line">	if (FALSE == Process32First(hProcess, &amp;pi))</span><br><span class="line">	&#123;</span><br><span class="line">		AfxMessageBox(TEXT(&quot;打开快照失误&quot;));</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	while (Process32Next(hProcess, &amp;pi))</span><br><span class="line">	&#123;</span><br><span class="line">		int index =m_list.AddString(pi.szExeFile);</span><br><span class="line">		m_list.SetItemData(index, pi.th32ProcessID);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">void InjectDll(HANDLE hprocess, LPCTSTR szDllName);</span><br><span class="line"></span><br><span class="line">void CMFCinjectDlg::OnBnClickedButton2()</span><br><span class="line">&#123;</span><br><span class="line">	CString stringDllName;</span><br><span class="line">	m_Browse.GetWindowText(stringDllName);</span><br><span class="line">	//获取进程的pid</span><br><span class="line">	 int index =m_list.GetCurSel();</span><br><span class="line">	 DWORD m_pid = m_list.GetItemData(index);</span><br><span class="line">	 HANDLE proc = OpenProcess(PROCESS_ALL_ACCESS, FALSE, m_pid);</span><br><span class="line">	 if (proc == NULL)</span><br><span class="line">	 &#123;</span><br><span class="line">		 AfxMessageBox(TEXT(&quot;打开进程失败&quot;));</span><br><span class="line">		 return;</span><br><span class="line">	 &#125;</span><br><span class="line">	 InjectDll(proc, stringDllName);</span><br><span class="line">&#125;</span><br><span class="line">void InjectDll(HANDLE hprocess, LPCTSTR szDllName)</span><br><span class="line">&#123;</span><br><span class="line">  //注入的函数</span><br><span class="line">	DWORD dllLength = (lstrlen(szDllName) + 1) * sizeof(TCHAR);</span><br><span class="line">	DWORD dll_length;</span><br><span class="line">	//在目标进程中开辟空间可以写的空间</span><br><span class="line">	PVOID dlladdr = VirtualAllocEx(hprocess, NULL, dllLength, MEM_COMMIT, PAGE_READWRITE);</span><br><span class="line">	if (dlladdr == NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		AfxMessageBox(TEXT(&quot;创建控件失败&quot;));</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	WriteProcessMemory(</span><br><span class="line">		hprocess,</span><br><span class="line">		dlladdr,</span><br><span class="line">		szDllName,</span><br><span class="line">		dllLength,</span><br><span class="line">		&amp;dll_length);</span><br><span class="line">	//获得loadlibrary函数的地址</span><br><span class="line">	FARPROC procaddr = GetProcAddress(::GetModuleHandle(TEXT(&quot;kernel32.dll&quot;)), &quot;LoadLibraryW&quot;);</span><br><span class="line">	if (!procaddr)</span><br><span class="line">	&#123;</span><br><span class="line">		AfxMessageBox(L&quot;获得loadlibaray失败&quot;);</span><br><span class="line"></span><br><span class="line">		return ;</span><br><span class="line">	&#125;</span><br><span class="line">	HANDLE hthread = CreateRemoteThread(</span><br><span class="line">		hprocess, NULL, 0, (LPTHREAD_START_ROUTINE)procaddr, dlladdr, 0, NULL</span><br><span class="line">	);</span><br><span class="line">	WaitForSingleObject(hthread, -1);</span><br><span class="line">	CloseHandle(hthread);</span><br><span class="line">	CloseHandle(hprocess);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>这之后我们重启虚拟机之后可以发现可以进入调试模式。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%953.jpg" alt="虚拟机调试模式完成"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/%E5%8F%8C%E6%9C%BA%E8%B0%83%E8%AF%954.jpg" alt="Windbg配置"></li>
-<li>之后打开Windbg,选择 <em>File\Kernel Debug</em> 然后配置虚拟机的信息按照下面的方法配置<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi5.jpg" alt="选择串口来调试"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi6.jpg" alt="加载虚拟机"></li>
-<li>配置完成后，就会出现下面这个画面windbg一直卡在一个界面，这是我们按 <strong>Ctrl+break</strong> 键来让虚拟机强制中断(这时已经在windbg的调试下了),按完这个键之后等一会就能看到下面的内容.我们发现其已经断下，在去点击虚拟机里的鼠标键盘已经不能使用，说明确实断下了。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi7.jpg" alt="ctrl+break"></li>
-<li>最后查看一下GDT表来确定环境搭建成功<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/shuangjitiaoshi8.jpg" alt="查看GDT表"></li>
+<li><p>结果我们可以编译为X86或者X64注意程序的位数比如：要注入notepad.exe（windows 10 64位）就要编译为x64。但是远程线程注入很好去检测出来，可以去检查模块来检测出远程线程。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru1.png" alt="注入程序"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru2.png" alt="注入成功"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/dll_zhuru3.jpg" alt="PEID来确认"></p>
+</li>
 </ul>
 
       
@@ -585,7 +567,7 @@
           
             <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
           
-            <a href="/tags/Windows-Kernel/" rel="tag"><i class="fa fa-tag"></i> Windows Kernel</a>
+            <a href="/tags/dll编程/" rel="tag"><i class="fa fa-tag"></i> dll编程</a>
           
         </div>
       
@@ -598,8 +580,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/27/简单的远程线程注入/" rel="next" title="简单的远程线程注入">
-                <i class="fa fa-chevron-left"></i> 简单的远程线程注入
+              <a href="/2019/12/29/简单dll编程/" rel="next" title="dll简单编程">
+                <i class="fa fa-chevron-left"></i> dll简单编程
               </a>
             
           </div>
@@ -608,8 +590,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/22/windows保护模式学习之段寄存器的属性/" rel="prev" title="Windows保护模式学习2-段寄存器属性">
-                Windows保护模式学习2-段寄存器属性 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/11/Windows保护模式学习1-双机调试环境使用xp系统/" rel="prev" title="Windows保护模式学习1-双机调试环境使用xp系统">
+                Windows保护模式学习1-双机调试环境使用xp系统 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -802,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows双机调试环境的搭建"><span class="nav-number">1.</span> <span class="nav-text">Windows双机调试环境的搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置虚拟机"><span class="nav-number">1.1.</span> <span class="nav-text">配置虚拟机</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#远程线程注入"><span class="nav-number">1.</span> <span class="nav-text">远程线程注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#远程线程注入的使用"><span class="nav-number">1.1.</span> <span class="nav-text">远程线程注入的使用</span></a></li></ol></li></ol></div>
             
 
           </div>
