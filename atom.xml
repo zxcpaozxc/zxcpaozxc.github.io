@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-29T09:30:07.746Z</updated>
+  <updated>2020-04-13T01:54:38.836Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,9 +17,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>crackme_splish</title>
+    <link href="http://yoursite.com/2020/03/29/crackme_splish/"/>
+    <id>http://yoursite.com/2020/03/29/crackme_splish/</id>
+    <published>2020-03-28T16:00:00.000Z</published>
+    <updated>2020-04-13T01:54:38.836Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="crackme-splish"><a href="#crackme-splish" class="headerlink" title="crackme_splish"></a>crackme_splish</h3><h4 id="查看基本信息"><a href="#查看基本信息" class="headerlink" title="查看基本信息"></a>查看基本信息</h4><ul><li>PEID查看发现是一个MASM32编写的程序，直接在OD中载入首先来搜一下字符串发现了字符串”sorry please try again”的字样然后直接跟进去，然后我们向上去找到函数的入口处设一个断点，然后直接运行程序。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_splish_1.jpg" alt="查字符串"><h4 id="程序的主流程"><a href="#程序的主流程" class="headerlink" title="程序的主流程"></a>程序的主流程</h4></li><li>首先可以看到调用了两次 <strong>GetWindowTextA</strong> 函数来分别获得用户名与密码，然后就是主要的密码生成算法了，首先是循环获得用户名的每一位的ascii值，并且存放在eax中，之后eax/10,edx=eax%10,ebx存放循环的次数(有多少位循环多少次),edx与ebx异或后再加2，比较edx的值是否大于10若大于10就减去10。这是首先对用户名进行了处理，之后是对输入的密码进行处理。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_splish2.jpg" alt="对用户名的处理"><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_splish3.jpg" alt="ida中的伪代码"></li><li>对密码的处理就是密码的每一位的ascii值对10取余,然后就完了，也就是说这里我们要取转化一下，就是如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">password = 10*商+余数</span><br><span class="line">其中商为第一步算出的eax/10的结果</span><br><span class="line">余数为eax%10的结果</span><br></pre></td></tr></table></figure></li></ul><p>这样理清之后就可以去写注册机代码，先把流程再整理一下；</p><ol><li>循环取用户名的每一位，并且user_chuli=(ord(username)%10)^循环次数+2,user_shang=ord(username)/10</li><li>password =10*user_shang+user_chuli</li><li>这里有一个点要注意就是密码必须为数字所以也要加以数字的判断如果超过9的ascii值就要减小，如果小于0的ascii值就要增加。<br>分为这两步之后直接用python写一个注册机如下；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">str1 =input(&quot;请输入你的用户名:&quot;)</span><br><span class="line">list1=[]</span><br><span class="line">for i in range(0,len(str1)):</span><br><span class="line">    list1.append(ord(str1[i]))</span><br><span class="line">list2=[]</span><br><span class="line">for i in range(0,len(list1)):</span><br><span class="line">    temp  = ((list1[i]%0xA)^i)+2</span><br><span class="line">    list1[i]//=0xA</span><br><span class="line">    if temp &gt;0xa:</span><br><span class="line">        temp-=0xa</span><br><span class="line">    list2.append(temp)</span><br><span class="line">list3=[]</span><br><span class="line">for i in range(0,len(list2)):</span><br><span class="line">    temp=int(list1[i])*10+list2[i]</span><br><span class="line">    sum=0</span><br><span class="line">    while temp&gt;57:</span><br><span class="line">        temp=(list1[i]-sum)*10+list2[i]</span><br><span class="line">        sum+=1</span><br><span class="line">    dec=0</span><br><span class="line">    while temp&lt;48:</span><br><span class="line">        temp=(list1[i]+dec)*10+list2[i]</span><br><span class="line">        dec+=1</span><br><span class="line">    list3.append(chr(temp))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(list3)</span><br></pre></td></tr></table></figure></li></ol><ul><li>运行结果也是正确的<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/crackme_splish_result.jpg附上题目的链接:[splish](https://github.com/zxcpaozxc/zxcpaozxc.github.io/blob/master/2020/Splish.exe" alt="运行结果"></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;crackme-splish&quot;&gt;&lt;a href=&quot;#crackme-splish&quot; class=&quot;headerlink&quot; title=&quot;crackme_splish&quot;&gt;&lt;/a&gt;crackme_splish&lt;/h3&gt;&lt;h4 id=&quot;查看基本信息&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="破解基础" scheme="http://yoursite.com/tags/%E7%A0%B4%E8%A7%A3%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows保护模式学习3-段描述符与段选择子</title>
+    <link href="http://yoursite.com/2020/03/25/Windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A03%E4%B9%8B%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6%E4%B8%8E%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90/"/>
+    <id>http://yoursite.com/2020/03/25/Windows保护模式学习3之段描述符与段选择子/</id>
+    <published>2020-03-24T16:00:00.000Z</published>
+    <updated>2020-04-04T15:58:04.435Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Windows的段描述符与段选择子"><a href="#Windows的段描述符与段选择子" class="headerlink" title="Windows的段描述符与段选择子"></a>Windows的段描述符与段选择子</h3><h4 id="WINDOWS的段描述符"><a href="#WINDOWS的段描述符" class="headerlink" title="WINDOWS的段描述符"></a>WINDOWS的段描述符</h4><ul><li>对于CPU来说最有用的两个表是 <strong>GDT表与IDT表</strong>，其中GDT表叫做全局描述符表这张表里的内容就是段描述符。使用Windbg可以查看GDT表的地址，只要输入 <strong>r gdtr</strong> 就可定位到gdt表的位置之后输入指令 <strong>dq + 表内的地址就可以定位到gdt表的位置</strong><br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/kernel3_1.jpg" alt="查看GDT表的内容"></li><li><p>段描述符一共有64位8字节，其主要结构如下图,其中最主要的部分我们来注释一下其作用。<br><img src="https://github.com/zxcpaozxc/zxcpaozxc.github.io/raw/master/image/kernel3_2.png" alt="段描述符的结构"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">8-11位：type域:由s位来确定其功能，主要是对段来进行描述</span><br><span class="line">12位：s位: s位=0为系统段 s位=1为代码段或者是数据段</span><br><span class="line">13-14位: DPL位:用来确定访问段的最低权限等级，windows下有两个值:00与11 00为高权限，11为低权限</span><br><span class="line">15位：p位：p位=1表示此段描述符有效，p位=0表示此段描述符无效</span><br><span class="line">24位:G位：G位=1表示此段的粒度为:0xffffffff,G位=0表示此段的粒度为0xfffff</span><br></pre></td></tr></table></figure><ul><li>段选择子结构就是在OD中可以看到的那16位，主要的功能就是可以去GDT表中去寻找段描述符，其结构如下图，段选择子由三部分构成，2个位的RPL,1位的TI,13位的index。其中RPL位请求特权级别一般来说其要小于DPL来能够访问一致代码段，每个段选择子都有自己的RPL。特别的CS段寄存器的RPL称为CPL，是当前CPU的特权级别，一般在3环下为11，在0环下为00，而对于TI位而言当其值为1时表示查LDT表，TI=0时表示查GDT表，但是对于windows操作系统来说其没有使用LDT表，所以其值在windows操作系统下一般都是0,<br>index就是表示在GDT表中的索引。通过index来找到在GDT表中的位置。<br><img src alt="段选择子"></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Windows的段描述符与段选择子&quot;&gt;&lt;a href=&quot;#Windows的段描述符与段选择子&quot; class=&quot;headerlink&quot; title=&quot;Windows的段描述符与段选择子&quot;&gt;&lt;/a&gt;Windows的段描述符与段选择子&lt;/h3&gt;&lt;h4 id=&quot;WINDO
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+      <category term="Windows Kernel" scheme="http://yoursite.com/categories/Hexo/Windows-Kernel/"/>
+    
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="Windows Kernel" scheme="http://yoursite.com/tags/Windows-Kernel/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Windows保护模式学习2-段寄存器属性</title>
-    <link href="http://yoursite.com/2020/03/22/windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7/"/>
-    <id>http://yoursite.com/2020/03/22/windows保护模式学习之段寄存器的属性/</id>
+    <link href="http://yoursite.com/2020/03/22/windows%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A02%E4%B9%8B%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yoursite.com/2020/03/22/windows保护模式学习2之段寄存器的属性/</id>
     <published>2020-03-21T16:00:00.000Z</published>
     <updated>2020-03-29T09:30:07.746Z</updated>
     
@@ -355,6 +409,35 @@
   </entry>
   
   <entry>
+    <title>正则表达式学习1</title>
+    <link href="http://yoursite.com/2019/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F1/"/>
+    <id>http://yoursite.com/2019/02/06/正则表达式1/</id>
+    <published>2019-02-05T16:00:00.000Z</published>
+    <updated>2019-03-16T15:40:19.730Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="正则表达式的初步学习"><a href="#正则表达式的初步学习" class="headerlink" title="正则表达式的初步学习"></a>正则表达式的初步学习</h3><p>第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重拾一下自己的知识。</p><hr><hr><ol><li><p>正则表达式是什么？</p><ul><li>正则表达式<em>在菜鸟教程中的概念如下</em>：<blockquote><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等</p></blockquote></li><li>我的个人理解就是来对文本进行匹配的。</li></ul></li><li><p>正则表达式的基础规则：</p><ul><li>位置标记： <strong>位置标记锚点</strong>是表识字符串位置的正则表达式。</li></ul></li></ol><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:left">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">^</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的首部</td><td style="text-align:center">^zxc可匹配以zxc为首的行</td></tr><tr><td style="text-align:left">$</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的尾部</td><td style="text-align:center">zxc$可匹配以zxc结尾的行</td></tr></tbody></table><ul><li>标识符: <strong>标识符是正则表达式的基础部分</strong></li></ul><table><thead><tr><th style="text-align:center">正则表达式</th><th style="text-align:center">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:center">.</td><td style="text-align:center">匹配任意一个字符</td><td style="text-align:center">asq.可以匹配asq1或者asqe 但是不能匹配asqer 其只能匹配单个的字符</td></tr><tr><td style="text-align:center">[ ]</td><td style="text-align:center">匹配括号中的任意一个字符，中括号内可以为字符组或者字符范围</td><td style="text-align:center">par[kj]可以匹配park或者parj ,[0-9]可以匹配任意的单个数字</td></tr><tr><td style="text-align:center">[ ^ ]</td><td style="text-align:center">匹配不在中括号中的任意一个字符</td><td style="text-align:center">这个就比较好理解如 9[^12]就不能匹配91 或者 92</td></tr></tbody></table><ul><li>数量修饰符:  <strong>数量修饰符定义了模式可出现的次数</strong></li></ul><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:right">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">?</td><td style="text-align:right">只能够匹配之前的项1次或者0次</td><td style="text-align:center">courl?可以匹配courl 或者是cour</td></tr><tr><td style="text-align:left">+</td><td style="text-align:right">匹配之前的一项1次或者多次</td><td style="text-align:center">courl+ 可以匹配courl或者 courll 等等</td></tr><tr><td style="text-align:left">*</td><td style="text-align:right">可以匹配之前的一项0次或者多次</td><td style="text-align:center">c * ourl可以匹配 courl或者ccourl或者是ourl 等等</td></tr><tr><td style="text-align:left">{n}</td><td style="text-align:right">匹配之前的项n次</td><td style="text-align:center">如[0-9]{2} 能够匹配任意的两位数</td></tr><tr><td style="text-align:left">{n,}</td><td style="text-align:right">之前的项至少要匹配n次</td><td style="text-align:center">如[0-9]{4}能够匹配任意一个4位数或者更多位的数字</td></tr><tr><td style="text-align:left">{n,m}</td><td style="text-align:right">之前的项匹配的最小次数与最多次数</td><td style="text-align:center">[0-9]{2,5}匹配两位数到五位数之前的任何数字</td></tr></tbody></table><hr><p>正则表达式的基本规则大概就是这些，之后会给出如何匹配出你想要得到的数据</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;正则表达式的初步学习&quot;&gt;&lt;a href=&quot;#正则表达式的初步学习&quot; class=&quot;headerlink&quot; title=&quot;正则表达式的初步学习&quot;&gt;&lt;/a&gt;正则表达式的初步学习&lt;/h3&gt;&lt;p&gt;第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重
+      
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+      <category term="正则表达式学习" scheme="http://yoursite.com/categories/Hexo/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="正则表达式学习" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CE的基础练习</title>
     <link href="http://yoursite.com/2019/02/06/CE%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0/"/>
     <id>http://yoursite.com/2019/02/06/CE的基础练习/</id>
@@ -381,35 +464,6 @@
       <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
       <category term="Cheat Engine" scheme="http://yoursite.com/tags/Cheat-Engine/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>正则表达式学习1</title>
-    <link href="http://yoursite.com/2019/02/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F1/"/>
-    <id>http://yoursite.com/2019/02/06/正则表达式1/</id>
-    <published>2019-02-05T16:00:00.000Z</published>
-    <updated>2019-03-16T15:40:19.730Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="正则表达式的初步学习"><a href="#正则表达式的初步学习" class="headerlink" title="正则表达式的初步学习"></a>正则表达式的初步学习</h3><p>第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重拾一下自己的知识。</p><hr><hr><ol><li><p>正则表达式是什么？</p><ul><li>正则表达式<em>在菜鸟教程中的概念如下</em>：<blockquote><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等</p></blockquote></li><li>我的个人理解就是来对文本进行匹配的。</li></ul></li><li><p>正则表达式的基础规则：</p><ul><li>位置标记： <strong>位置标记锚点</strong>是表识字符串位置的正则表达式。</li></ul></li></ol><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:left">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">^</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的首部</td><td style="text-align:center">^zxc可匹配以zxc为首的行</td></tr><tr><td style="text-align:left">$</td><td style="text-align:left">指定了匹配正则表达式的文本必须始于字符串的尾部</td><td style="text-align:center">zxc$可匹配以zxc结尾的行</td></tr></tbody></table><ul><li>标识符: <strong>标识符是正则表达式的基础部分</strong></li></ul><table><thead><tr><th style="text-align:center">正则表达式</th><th style="text-align:center">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:center">.</td><td style="text-align:center">匹配任意一个字符</td><td style="text-align:center">asq.可以匹配asq1或者asqe 但是不能匹配asqer 其只能匹配单个的字符</td></tr><tr><td style="text-align:center">[ ]</td><td style="text-align:center">匹配括号中的任意一个字符，中括号内可以为字符组或者字符范围</td><td style="text-align:center">par[kj]可以匹配park或者parj ,[0-9]可以匹配任意的单个数字</td></tr><tr><td style="text-align:center">[ ^ ]</td><td style="text-align:center">匹配不在中括号中的任意一个字符</td><td style="text-align:center">这个就比较好理解如 9[^12]就不能匹配91 或者 92</td></tr></tbody></table><ul><li>数量修饰符:  <strong>数量修饰符定义了模式可出现的次数</strong></li></ul><table><thead><tr><th style="text-align:left">正则表达式</th><th style="text-align:right">描述</th><th style="text-align:center">实例</th></tr></thead><tbody><tr><td style="text-align:left">?</td><td style="text-align:right">只能够匹配之前的项1次或者0次</td><td style="text-align:center">courl?可以匹配courl 或者是cour</td></tr><tr><td style="text-align:left">+</td><td style="text-align:right">匹配之前的一项1次或者多次</td><td style="text-align:center">courl+ 可以匹配courl或者 courll 等等</td></tr><tr><td style="text-align:left">*</td><td style="text-align:right">可以匹配之前的一项0次或者多次</td><td style="text-align:center">c * ourl可以匹配 courl或者ccourl或者是ourl 等等</td></tr><tr><td style="text-align:left">{n}</td><td style="text-align:right">匹配之前的项n次</td><td style="text-align:center">如[0-9]{2} 能够匹配任意的两位数</td></tr><tr><td style="text-align:left">{n,}</td><td style="text-align:right">之前的项至少要匹配n次</td><td style="text-align:center">如[0-9]{4}能够匹配任意一个4位数或者更多位的数字</td></tr><tr><td style="text-align:left">{n,m}</td><td style="text-align:right">之前的项匹配的最小次数与最多次数</td><td style="text-align:center">[0-9]{2,5}匹配两位数到五位数之前的任何数字</td></tr></tbody></table><hr><p>正则表达式的基本规则大概就是这些，之后会给出如何匹配出你想要得到的数据</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;正则表达式的初步学习&quot;&gt;&lt;a href=&quot;#正则表达式的初步学习&quot; class=&quot;headerlink&quot; title=&quot;正则表达式的初步学习&quot;&gt;&lt;/a&gt;正则表达式的初步学习&lt;/h3&gt;&lt;p&gt;第一次接触正则是在大二的时候，现在长时间不使用，有些概念比较模糊，因此准备重
-      
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
-    
-      <category term="正则表达式学习" scheme="http://yoursite.com/categories/Hexo/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
-    
-      <category term="正则表达式学习" scheme="http://yoursite.com/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -498,31 +552,6 @@
       <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
       <category term="python爬虫" scheme="http://yoursite.com/tags/python%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2018/10/01/hello-world/"/>
-    <id>http://yoursite.com/2018/10/01/hello-world/</id>
-    <published>2018-09-30T16:00:00.000Z</published>
-    <updated>2019-03-09T03:53:34.973Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
     
   </entry>
   
